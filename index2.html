@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TampereMove — Affordable & Student-Friendly Moving Services</title>
+    <style>
+        /* Modern CSS Reset & Variable Design Token System */
+        :root {
+            --bg-main: #0B0F19;
+            --bg-card: #161C2A;
+            --primary: #10B981; /* Electric Green */
+            --primary-hover: #059669;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --border: #222C3F;
+            --student-purple: #8B5CF6; /* Contrast color for Student specific elements */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Navbar */
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-card);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Pricing / Cards Grid */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin: 60px 0 30px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card.featured {
+            border-color: var(--student-purple);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--student-purple);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--primary);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Anti-Niemi / Value Props Section */
+        .features-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .prop-item h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .prop-item p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Simple Booking / Interactive UI Preview */
+        .booking-widget {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto 80px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+            .cta-group { flex-direction: column; }
+            .features-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Tampere<span>Move</span></a>
+            <nav>
+                <a href="#pricing">Pricing</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#book">Book Van</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="badge">Local Tampere Price Match</span>
+            <h1>Moving shouldn't cost a<br><span>whole month's rent.</span></h1>
+            <p>The transparent, no-bullsh*t moving service designed for students and small apartments in the Pirkanmaa region. Calculate, choose, and lock your price instantly.</p>
+            <div class="cta-group">
+                <a href="#book" class="btn btn-primary">Book in 2 Minutes</a>
+                <a href="#pricing" class="btn btn-secondary">See Student Pricing</a>
+            </div>
+            <p style="font-size: 14px; margin-top: 10px;">⭐ No staircase fees • No weekend surcharges</p>
+        </section>
+
+        <!-- Dynamic Anti-Friction Value Grid -->
+        <h2 class="section-title" id="why-us">The Anti-Corporate Way</h2>
+        <section class="features-row">
+            <div class="prop-item">
+                <h3>⏱️ No Waiting Around</h3>
+                <p>Skip filling out custom quote requests that take 24 hours. Book instantly based on predictable hourly rates.</p>
+            </div>
+            <div class="prop-item">
+                <h3>🎓 True Student Status</h3>
+                <p>Flash your Tuudo app, Syrinx logo, or plastic student card to lock down structural, flat discounts.</p>
+            </div>
+            <div class="prop-item">
+                <h3>💶 Pay by the Minute</h3>
+                <p>We baseline at a minimum of just 1 hour. If the move finishes inside 1hr 15m, you only pay for exactly that.</p>
+            </div>
+        </section>
+
+        <!-- Pricing Tiers -->
+        <h2 class="section-title" id="pricing">Transparent Pricing Plans</h2>
+        <section class="grid">
+
+            <!-- Tier 1 -->
+            <div class="card">
+                <div>
+                    <h3>Man & Van (DIY Helper)</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">Perfect if you can pack & load but need the space.</p>
+                    <div class="price">€49 <span>/ hour</span></div>
+                    <ul class="features-list">
+                        <li>10m³ clean moving van</li>
+                        <li>1 brisk driver to safely pack and stack</li>
+                        <li>Moving straps & dollies included</li>
+                        <li>Minimum 1 hour base threshold</li>
+                    </ul>
+                </div>
+                <a href="#book" class="btn btn-secondary" style="text-align: center; margin-top: 20px;">Choose Plan</a>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="card featured">
+                <div class="card-tag">Most Popular for Students</div>
+                <div>
+                    <h3>Full Studio Move</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">Let us handle the muscle work completely.</p>
+                    <div class="price">€79 <span>/ hour</span></div>
+                    <ul class="features-list">
+                        <li>Spacious 15m³ moving truck</li>
+                        <li>2 professional loaders</li>
+                        <li>Zero elevator/staircase penalty</li>
+                        <li>Includes basic transport insurance</li>
+                    </ul>
+                </div>
+                <a href="#book" class="btn btn-primary" style="text-align: center; margin-top: 20px;">Book Full Move</a>
+            </div>
+
+        </section>
+
+        <!-- Interactive Booking Simulator UX -->
+        <h2 class="section-title" id="book">Lock In Your Slot</h2>
+        <section class="booking-widget">
+            <form onsubmit="event.preventDefault(); alert('Booking submitted successfully! Our local crew will text you within 15 minutes.');">
+                <div class="form-group">
+                    <label for="route">Where are you moving?</label>
+                    <input type="text" id="route" class="form-control" placeholder="e.g., Hervanta TOAS -> Kaleva Apartment" required>
+                </div>
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                    <div>
+                        <label for="date">Moving Date</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="tier">Select Service Level</label>
+                        <select id="tier" class="form-control">
+                            <option>Man & Van (€49/h)</option>
+                            <option>Full Studio Move (€79/h)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 6px; border: 1px solid var(--student-purple);">
+                    <label style="color: white; font-weight: bold; margin-bottom: 5px;">🎓 Do you have a valid Student ID?</label>
+                    <select class="form-control" style="background: var(--bg-card);">
+                        <option>Yes, apply 15% discount code: TUNI-MOVE</option>
+                        <option>No, structural pricing</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none; font-size: 16px;">Calculate Final Price & Book</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 TampereMove Oy. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 12px; color: var(--text-muted);">Serving Tampere, Hervanta, Kangasala, Nokia, Lempäälä and surrounding Pirkanmaa local zones.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
