@@ -10,30 +10,65 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MovingCompany",
-      "name": "TampereMove",
-      "image": "assets/tampere-muuttopalvelu-muuttoauto-transparent.png",
-      "telephone": "+358449318824",
-      "url": "https://tamperemove.fi",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Tampere",
-        "addressRegion": "Pirkanmaa",
-        "addressCountry": "FI"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "61.4978",
-        "longitude": "23.7610"
-      },
-      "areaServed": [
-        {"@type": "AdministrativeArea", "name": "Tampere"},
-        {"@type": "AdministrativeArea", "name": "Hervanta"},
-        {"@type": "AdministrativeArea", "name": "Pirkkala"},
-        {"@type": "AdministrativeArea", "name": "Nokia"},
-        {"@type": "AdministrativeArea", "name": "Lempäälä"},
-        {"@type": "AdministrativeArea", "name": "Kangasala"}
+      "@graph": [
+        {
+          "@type": "MovingCompany",
+          "@id": "https://tamperemove.fi/#organization",
+          "name": "TampereMove",
+          "image": "assets/tampere-muuttopalvelu-muuttoauto-transparent.png",
+          "telephone": "+358449318824",
+          "url": "https://tamperemove.fi",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Tampere",
+            "addressRegion": "Pirkanmaa",
+            "addressCountry": "FI"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "61.4978",
+            "longitude": "23.7610"
+          },
+          "areaServed": [
+            {"@type": "AdministrativeArea", "name": "Tampere"},
+            {"@type": "AdministrativeArea", "name": "Hervanta"},
+            {"@type": "AdministrativeArea", "name": "Pirkkala"},
+            {"@type": "AdministrativeArea", "name": "Nokia"},
+            {"@type": "AdministrativeArea", "name": "Lempäälä"},
+            {"@type": "AdministrativeArea", "name": "Kangasala"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://tamperemove.fi/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "When exactly does my hourly billing start and stop?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Billing begins precisely when our van and crew arrive at your first pick-up address. It ends the exact minute the final item is safely unloaded at your final destination route endpoint."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What happens if my move takes a fraction of an hour (e.g., 2h 15m)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We have a simple 1-hour minimum charge rule. After that first initial hour is complete, we bill down to the precise minute. You only pay for exactly what you use."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are there extra hidden fees for high-floor apartment staircases?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely not. Whether you are moving out of a ground-floor row house or a 5th-floor building in central Keskusta without an elevator, our flat hourly rates remain completely identical."
+              }
+            }
+          ]
+        }
       ]
     }
     </script>
@@ -1001,12 +1036,12 @@
 </head>
 <body>
 
-    <div id="langModal" class="modal-overlay">
+    <div id="langModal" class="modal-overlay" role="dialog" aria-labelledby="modalTitle">
         <div class="modal-content">
-            <div class="modal-title">Choose Language</div>
+            <div id="modalTitle" class="modal-title">Choose Language</div>
             <div class="modal-subtitle">Valitse sivuston kieli</div>
             <div class="modal-btn-group">
-                <button class="modal-btn" onclick="setLanguage('fi')">Suomi 🇫🇮</button>
+                <button class="modal-btn" onclick="setLanguage('fi')">Suomi 🇫irikko</button>
                 <button class="modal-btn" onclick="setLanguage('en')">English 🇬🇧</button>
             </div>
         </div>
@@ -1018,7 +1053,7 @@
             <div class="nav-right">
                 <a href="tel:+358449318824" class="btn-call-nav">📞 <span data-en="Call" data-fi="Soita">Call</span></a>
                 <button class="utility-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle theme">🌙</button>
-                <button class="utility-btn" onclick="toggleLanguage()" id="langToggleBtn">FI</button>
+                <button class="utility-btn" onclick="toggleLanguage()" id="langToggleBtn" aria-label="Change Language">FI</button>
             </div>
         </div>
     </header>
@@ -1051,7 +1086,7 @@
         <section class="seo-props-row">
             <div class="prop-item">
                 <div class="prop-icon-wrapper">
-                    <svg class="prop-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+                    <svg class="prop-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
                 </div>
                 <div class="prop-text">
                     <h4 data-en="No Extra Fees" data-fi="Ei piilokuluja">No Extra Fees</h4>
@@ -1060,7 +1095,7 @@
             </div>
             <div class="prop-item">
                 <div class="prop-icon-wrapper">
-                    <svg class="prop-icon" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg>
+                    <svg class="prop-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg>
                 </div>
                 <div class="prop-text">
                     <h4 data-en="100% Local Service" data-fi="100% Paikallinen">100% Local Service</h4>
@@ -1069,7 +1104,7 @@
             </div>
             <div class="prop-item">
                 <div class="prop-icon-wrapper">
-                    <svg class="prop-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 13h-2v-1c-1.1 0-2-.9-2-2h1.5c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-1c-1.4 0-2.5-.6-2.5-2s1.1-2 2.5-2V5h2v1c1.1 0 2 .9 2 2H15c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5s.2.5.5.5h1c1.4 0 2.5.7 2.5 2s-1.1 2-2.5 2v1z"/></svg>
+                    <svg class="prop-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 13h-2v-1c-1.1 0-2-.9-2-2h1.5c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-1c-1.4 0-2.5-.6-2.5-2s1.1-2 2.5-2V5h2v1c1.1 0 2 .9 2 2H15c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5s.2.5.5.5h1c1.4 0 2.5.7 2.5 2s-1.1 2-2.5 2v1z"/></svg>
                 </div>
                 <div class="prop-text">
                     <h4 data-en="Minute-accurate Billing" data-fi="Minuuttitarkka laskutus">Minute-accurate Billing</h4>
@@ -1083,7 +1118,7 @@
                 <div class="proof-image-wrapper">
                     <img src="assets/tampere-moving-van.png"
                          alt="TampereMove professional local moving team loading a branded cargo van in Tampere"
-                         class="proof-img">
+                         class="proof-img" loading="lazy">
                 </div>
                 <div class="proof-text-side">
                     <span class="proof-mini-title" data-en="Why Professional Gear Costs Less" data-fi="Miksi ammattitason kalusto säästää rahaa">Why Professional Gear Costs Less</span>
@@ -1136,9 +1171,9 @@
         <section class="calculator-panel">
             <div class="calc-title-row">
                 <h4 data-en="Estimate Your Total Cost" data-fi="Arvioi kokonaiskustannuksesi">Estimate Your Total Cost</h4>
-                <div class="calc-hours-display"><span id="calcHoursValue">3</span> <span data-en="Hours" data-fi="Tuntia">Hours</span></div>
+                <div class="calc-hours-display" aria-live="polite"><span id="calcHoursValue">3</span> <span data-en="Hours" data-fi="Tuntia">Hours</span></div>
             </div>
-            <input type="range" min="1" max="10" value="3" class="slider-control" id="calcSlider" oninput="updateCalculatedPrices()">
+            <input type="range" min="1" max="10" value="3" class="slider-control" id="calcSlider" oninput="updateCalculatedPrices()" aria-label="Estimate shift timeline duration hours">
             <div class="calc-output-grid">
                 <div class="calc-output-box" id="calcBoxVan">
                     <h5 data-en="Van + Driver" data-fi="Auto + Kuljettaja">Van + Driver</h5>
@@ -1176,7 +1211,7 @@
 
                 <div class="faq-item">
                     <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span data-en="What happens if my move takes a fraction of an hour (e.g., 2h 15m)?" data-fi="Mitä tapahtuu, jos muuttoni kestää murto-osan tunnista (esim. 2h 15min)?">What happens if my move takes a fraction of an hour (e.g., 2h 15m)?</span>
+                        <span data-en="What happens if my move takes a fraction of an hour (e.g., 2h 15m)?" data-fi="Mitä tapahtuu, jos muuttoni kestää murto-osan tunnista (esim. 2h 15min)?">What happens if my move takes a fraction of an hour (e.g., 2h 15m)?"</span>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-content">
@@ -1217,7 +1252,7 @@
         </section>
 
         <section class="booking-section">
-            <div id="successState" class="success-panel">
+            <div id="successState" class="success-panel" aria-live="assertive">
                 <div class="success-icon">✓</div>
                 <h3 data-en="Booking Transmitted!" data-fi="Varaustiedot lähetetty!">Booking Transmitted!</h3>
                 <p data-en="Our dashboard has received your parameters. A local route operator will text your mobile phone within 15 minutes to confirm availability." data-fi="Tiimimme on vastaanottanut tietosi. Paikallinen ajojärjestelijä lähettää vahvistustekstiviestin puhelimeesi 15 minuutin kuluessa."></p>
@@ -1294,7 +1329,7 @@
             initInputFocusEffects();
             updateCalculatedPrices();
 
-            // Watch for real-time changes to desktop system theme preferences
+            // Real-time tracking alignment listener for active system color shifts
             window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
                 if (!localStorage.getItem('tampereMoveTheme')) {
                     const newTheme = e.matches ? 'light' : 'dark';
@@ -1394,7 +1429,6 @@
                 document.documentElement.setAttribute('data-theme', savedTheme);
                 themeToggleBtn.innerText = savedTheme === 'light' ? '☀️' : '🌙';
             } else {
-                // Read modern desktop system preferred color schema rules natively
                 const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
                 if (prefersLight) {
                     document.documentElement.setAttribute('data-theme', 'light');
