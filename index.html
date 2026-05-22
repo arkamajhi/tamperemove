@@ -89,6 +89,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
@@ -192,7 +196,7 @@
             transform: translateY(-1px);
         }
 
-        /* Hero Layout - Responsive Layout */
+        /* Hero Layout */
         .hero {
             padding: 40px 0;
             border-bottom: 1px solid var(--border);
@@ -227,12 +231,9 @@
             transform-style: preserve-3d;
             will-change: transform;
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), filter var(--transition-speed);
-
-            /* Continuous ambient pulse animation when not hovered */
             animation: brandPulse 3s ease-in-out infinite alternate;
         }
 
-        /* Continuous Ambient Pulse Keyframe Logic */
         @keyframes brandPulse {
             0% {
                 transform: scale(0.97);
@@ -244,7 +245,6 @@
             }
         }
 
-        /* Pause the pulse animation immediately on hover so it doesn't fight the JS 3D tilt tracking */
         .hero-logo-wrapper:hover .hero-brand-logo {
             animation-play-state: paused;
         }
@@ -267,7 +267,6 @@
             color: #15803D;
         }
 
-        /* FIXED TYPESETTING FLOW */
         h1 {
             font-size: clamp(28px, 4.5vw, 42px);
             font-weight: 800;
@@ -502,7 +501,7 @@
             display: flex;
             flex-direction: column;
             gap: 22px;
-            margin-bottom: 44px;
+            margin-bottom: 32px;
         }
 
         .card {
@@ -566,6 +565,103 @@
             margin-right: 12px;
             font-weight: bold;
             flex-shrink: 0;
+        }
+
+        /* Interactive Estimation Slider Panel */
+        .calculator-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 44px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .calc-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .calc-title-row h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .calc-hours-display {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        [data-theme="light"] .calc-hours-display {
+            background: #DCFCE7;
+            color: #16A34A;
+        }
+
+        .slider-control {
+            width: 100%;
+            -webkit-appearance: none;
+            background: var(--border);
+            height: 6px;
+            border-radius: 3px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .slider-control::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .slider-control::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .calc-output-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            border-top: 1px dashed var(--border);
+            padding-top: 16px;
+        }
+
+        .calc-output-box {
+            padding: 12px;
+            border-radius: 8px;
+            transition: background var(--transition-speed);
+        }
+
+        .calc-output-box.highlighted-plan {
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .calc-output-box h5 {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .calc-output-box p {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .calc-output-box p span {
+            color: var(--primary);
         }
 
         .student-banner {
@@ -640,8 +736,9 @@
         .faq-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.25s cubic-bezier(0, 1, 0, 1);
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
             padding: 0 24px;
+            opacity: 0;
         }
 
         .faq-item.active {
@@ -650,8 +747,8 @@
 
         .faq-item.active .faq-content {
             max-height: 1000px;
-            transition: max-height 0.25s cubic-bezier(1, 0, 1, 0);
             padding-bottom: 20px;
+            opacity: 1;
         }
 
         .faq-content p {
@@ -707,6 +804,7 @@
             border-radius: 12px;
             padding: 28px;
             margin-bottom: 64px;
+            position: relative;
         }
 
         .form-group {
@@ -728,7 +826,7 @@
             border: 1px solid var(--border);
             border-radius: 6px;
             color: var(--text-main);
-            font-size: 15px;
+            font-size: 16px; /* Prevents auto-zoom scales in iOS safari environments */
             -webkit-appearance: none;
             transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
         }
@@ -739,7 +837,7 @@
             box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
         }
 
-        .form-row-2 {
+        .form-row-2, .form-row-3 {
             display: flex;
             flex-direction: column;
             gap: 18px;
@@ -751,6 +849,45 @@
             margin-top: 8px;
             display: block;
             line-height: 1.4;
+        }
+
+        /* Inline Beautiful Success Banner State */
+        .success-panel {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .success-panel h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .success-panel p {
+            color: var(--text-muted);
+            font-size: 15px;
+            max-width: 440px;
+            margin: 0 auto;
         }
 
         /* Language Selector Modal Box */
@@ -848,9 +985,15 @@
             .proof-grid { grid-template-columns: 1.1fr 0.9fr; display: grid; gap: 54px; align-items: center; }
             .grid { flex-direction: row; gap: 26px; }
             .card { flex: 1; }
+
             .form-row-2 { flex-direction: row; }
             .form-row-2 .form-group { flex: 1; }
-            .call-option-block, .booking-section { max-width: 680px; margin-left: auto; margin-right: auto; }
+            .form-row-3 { flex-direction: row; }
+            .form-row-3 .form-group:nth-child(1) { flex: 1.5; }
+            .form-row-3 .form-group:nth-child(2) { flex: 1.2; }
+            .form-row-3 .form-group:nth-child(3) { flex: 1.3; }
+
+            .call-option-block, .booking-section, .calculator-panel { max-width: 680px; margin-left: auto; margin-right: auto; }
             .modal-btn-group { flex-direction: row; }
             .modal-btn { flex: 1; }
         }
@@ -956,12 +1099,12 @@
         </section>
 
         <h2 class="section-title" id="pricing" data-en="Choose From Only 2 Simple Plans" data-fi="Valitse kahdesta selkeästä paketista">Choose From Only 2 Simple Plans</h2>
-        <p class="section-subtitle" data-en="Straightforward rates designed to make budgeting easy for everyone" data-fi="Selkeät hinnat, joiden avulla budjetointi on helppoa kaikille">Straightforward rates designed to make budgeting easy for everyone.</p>
+        <p class="section-subtitle" data-en="Straightforward rates designed to make budgeting easy for everyone" data-fi="Selkeät hinnat, joiden avulla budjetointi on helppoa kaikille">Straightforward rates designed to make budgeting easy for everyone</p>
 
         <section class="grid">
             <div class="card">
                 <div class="card-header">
-                    <h3 data-en="Driver + Large Van" data-fi="Kuljettaja + Iso pakettiauto">Driver + Large Van</h3>
+                    <h3><span data-en="Driver + Large Van" data-fi="Kuljettaja + Iso pakettiauto">Driver + Large Van</span></h3>
                     <p data-en="Best for DIY movers who pack themselves but need space and transportation." data-fi="Sopii omatoimiselle muuttajalle, joka pakkaa itse mutta tarvitsee tilaa ja kuljetuksen.">Best for DIY movers who pack themselves but need space and transportation.</p>
                     <div class="price">€60 <span data-en="/ hour" data-fi="/ tunti">/ hour</span></div>
                 </div>
@@ -971,12 +1114,12 @@
                     <li data-en="Free use of moving blankets, straps & dollies" data-fi="Muuttoliinojen, sidontahihnojen ja kärryjen vapaa käyttö">Free use of moving blankets, straps & dollies</li>
                     <li data-en="No extra fees for weekend or evening bookings" data-fi="Ei lisämaksuja ilta- tai viikonloppuvarauksista">No extra fees for weekend or evening bookings</li>
                 </ul>
-                <a href="#book" class="btn btn-secondary" data-en="Select Van + Driver" data-fi="Valitse Auto + Kuljettaja">Select Van + Driver</a>
+                <button type="button" class="btn btn-secondary" onclick="selectPlanAndScroll('van')" data-en="Select Van + Driver" data-fi="Valitse Auto + Kuljettaja">Select Van + Driver</button>
             </div>
 
             <div class="card" style="border-color: var(--primary);">
                 <div class="card-header">
-                    <h3 data-en="Driver + Van + Helper" data-fi="Kuljettaja + Auto + Muottomies">Driver + Van + Helper</h3>
+                    <h3><span data-en="Driver + Van + Helper" data-fi="Kuljettaja + Auto + Muottomies">Driver + Van + Helper</span></h3>
                     <p data-en="Best when you want total peace of mind and complete heavy lifting help." data-fi="Paras vaihtoehto, kun haluat täyden mielenrauhan ja kunnon kantoapua.">Best when you want total peace of mind and complete heavy lifting help.</p>
                     <div class="price">€80 <span data-en="/ hour" data-fi="/ tunti">/ hour</span></div>
                 </div>
@@ -986,7 +1129,25 @@
                     <li data-en="We handle all heavy furniture, beds & boxes" data-fi="Me hoidamme raskaat huonekalut, sängyt ja laatikot puolestasi"> We handle all heavy furniture, beds & boxes</li>
                     <li data-en="Zero staircase penalties or floor surcharges" data-fi="Ei kerros- tai porraslisämaksuja">Zero staircase penalties or floor surcharges</li>
                 </ul>
-                <a href="#book" class="btn btn-primary" data-en="Select Full Moving Help" data-fi="Valitse Täysi Muuttoapu">Select Full Moving Help</a>
+                <button type="button" class="btn btn-primary" onclick="selectPlanAndScroll('helper')" data-en="Select Full Moving Help" data-fi="Valitse Täysi Muuttoapu">Select Full Moving Help</button>
+            </div>
+        </section>
+
+        <section class="calculator-panel">
+            <div class="calc-title-row">
+                <h4 data-en="Estimate Your Total Cost" data-fi="Arvioi kokonaiskustannuksesi">Estimate Your Total Cost</h4>
+                <div class="calc-hours-display"><span id="calcHoursValue">3</span> <span data-en="Hours" data-fi="Tuntia">Hours</span></div>
+            </div>
+            <input type="range" min="1" max="10" value="3" class="slider-control" id="calcSlider" oninput="updateCalculatedPrices()">
+            <div class="calc-output-grid">
+                <div class="calc-output-box" id="calcBoxVan">
+                    <h5 data-en="Van + Driver" data-fi="Auto + Kuljettaja">Van + Driver</h5>
+                    <p>€<span id="calcPriceVan">180</span></p>
+                </div>
+                <div class="calc-output-box" id="calcBoxHelper">
+                    <h5 data-en="With Extra Helper" data-fi="Apumiehen kanssa">With Extra Helper</h5>
+                    <p>€<span id="calcPriceHelper">240</span></p>
+                </div>
             </div>
         </section>
 
@@ -1046,7 +1207,7 @@
         </section>
 
         <h2 class="section-title" id="book" data-en="Select a Tentative Date for Now" data-fi="Valitse alustava päivämäärä">Select a Tentative Date for Now</h2>
-        <p class="section-subtitle" data-en="Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free" data-fi="Varmista paikkasi aikataulussamme jo tänään. Jos muuttoaikataulusi muuttuu, voit muuttaa päivämäärää myöhemmin ilmaiseksi">Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free.</p>
+        <p class="section-subtitle" data-en="Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free" data-fi="Varmista paikkasi aikataulussamme jo tänään. Jos muuttoaikataulusi muuttuu, voit muuttaa päivämäärää myöhemmin ilmaiseksi">Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free</p>
 
         <section class="call-option-block">
             <h3 data-en="Prefer booking over the phone?" data-fi="Haluatko mieluummin varata puhelimitse?">Prefer booking over the phone?</h3>
@@ -1056,6 +1217,12 @@
         </section>
 
         <section class="booking-section">
+            <div id="successState" class="success-panel">
+                <div class="success-icon">✓</div>
+                <h3 data-en="Booking Transmitted!" data-fi="Varaustiedot lähetetty!">Booking Transmitted!</h3>
+                <p data-en="Our dashboard has received your parameters. A local route operator will text your mobile phone within 15 minutes to confirm availability." data-fi="Tiimimme on vastaanottanut tietosi. Paikallinen ajojärjestelijä lähettää vahvistustekstiviestin puhelimeesi 15 minuutin kuluessa."></p>
+            </div>
+
             <form id="bookingForm" onsubmit="event.preventDefault(); handleBookingSubmit();">
                 <div class="form-group">
                     <label for="from-address" data-en="Pick-up Address (Where from?)" data-fi="Lähtöosoite (Mistä muutetaan?)">Pick-up Address (Where from?)</label>
@@ -1073,24 +1240,32 @@
                     <span class="privacy-notice" data-en="🔒 Required strictly to coordinate your booking arrival. We never save your number for marketing, and we absolutely do not send spam or advertisements." data-fi="🔒 Vaaditaan ainoastaan muuton saapumisajankohdan sopimiseen. Emme koskaan tallenna numeroasi markkinointia varten, emmekä lähetä mainoksia tai roskapostia.">🔒 Required strictly to coordinate your booking arrival. We never save your number for marketing, and we absolutely do not send spam or advertisements.</span>
                 </div>
 
-                <div class="form-row-2">
+                <div class="form-row-3">
                     <div class="form-group">
                         <label for="move-date" data-en="Preferred Date" data-fi="Toivottu Päivämäärä">Preferred Date</label>
                         <input type="date" id="move-date" class="form-control" onclick="this.showPicker();" required>
-                        <span class="privacy-notice" style="color: var(--primary);" data-en="💡 Dates are highly flexible. You can shift timelines later for free!" data-fi="💡 Päivämäärät ovat joustavia. Voit muuttaa ajankohtaa myöhemmin ilmaiseksi!">💡 Dates are highly flexible. You can shift timelines later for free!</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="move-time" data-en="Preferred Time" data-fi="Toivottu Kellonaika">Preferred Time</label>
+                        <select id="move-time" class="form-control" required>
+                            <option value="Morning" data-en="Morning (08:00 - 12:00)" data-fi="Aamu (08:00 - 12:00)">Morning (08:00 - 12:00)</option>
+                            <option value="Afternoon" data-en="Afternoon (12:00 - 16:00)" data-fi="Iltapäivä (12:00 - 16:00)">Afternoon (12:00 - 16:00)</option>
+                            <option value="Evening" data-en="Evening (16:00 - 20:00)" data-fi="Ilta (16:00 - 20:00)">Evening (16:00 - 20:00)</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="plan-select" data-en="Moving Plan" data-fi="Muuttopaketti">Moving Plan</label>
-                        <select id="plan-select" class="form-control" required>
-                            <option value="Driver + Van (€60/h)" data-en="Driver + Van (€60/h)" data-fi="Kuljettaja + Auto (€60/h)">Driver + Van (€60/h)</option>
-                            <option value="Driver + Van + Helper (€80/h)" data-en="Driver + Van + Helper (€80/h)" data-fi="Kuljettaja + Auto + Apumies (€80/h)">Driver + Van + Helper (€80/h)</option>
+                        <select id="plan-select" class="form-control" onchange="syncFormToCalculator()" required>
+                            <option value="van" data-en="Driver + Van (€60/h)" data-fi="Kuljettaja + Auto (€60/h)">Driver + Van (€60/h)</option>
+                            <option value="helper" data-en="Driver + Van + Helper (€80/h)" data-fi="Kuljettaja + Auto + Apumies (€80/h)">Driver + Van + Helper (€80/h)</option>
                         </select>
                     </div>
                 </div>
+                <span class="privacy-notice" style="color: var(--primary); margin-top: -8px; margin-bottom: 12px;" data-en="💡 Dates are highly flexible. You can shift timelines later for free!" data-fi="💡 Päivämäärät ovat joustavia. Voit muuttaa ajankohtaa myöhemmin ilmaiseksi!">💡 Dates are highly flexible. You can shift timelines later for free!</span>
 
                 <div class="form-group" style="margin-top: 10px;">
                     <label for="student-check" data-en="Are you a student?" data-fi="Oletko opiskelija?">Are you a student?</label>
-                    <select id="student-check" class="form-control" required>
+                    <select id="student-check" class="form-control" onchange="updateCalculatedPrices()" required>
                         <option value="No" data-en="No, regular pricing applies" data-fi="En, normaali hinnoittelu">No, regular pricing applies</option>
                         <option value="Yes" data-en="Yes, applying my flat €5 student card discount" data-fi="Kyllä, hyödynnän 5€ opiskelija-alennuksen">Yes, applying my flat €5 student card discount</option>
                     </select>
@@ -1117,6 +1292,16 @@
             initTheme();
             initLogo3DAnimation();
             initInputFocusEffects();
+            updateCalculatedPrices();
+
+            // Watch for real-time changes to desktop system theme preferences
+            window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+                if (!localStorage.getItem('tampereMoveTheme')) {
+                    const newTheme = e.matches ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    document.getElementById('themeToggleBtn').innerText = newTheme === 'light' ? '☀️' : '🌙';
+                }
+            });
 
             const savedLang = localStorage.getItem('tampereMoveLang');
             if (savedLang) {
@@ -1129,6 +1314,44 @@
         function toggleFaq(button) {
             const currentItem = button.parentElement;
             currentItem.classList.toggle('active');
+        }
+
+        function updateCalculatedPrices() {
+            const hours = document.getElementById('calcSlider').value;
+            const isStudent = document.getElementById('student-check').value === 'Yes';
+            const discountAmount = isStudent ? 5 : 0;
+
+            document.getElementById('calcHoursValue').innerText = hours;
+
+            const finalVanPrice = Math.max(0, (hours * 60) - discountAmount);
+            const finalHelperPrice = Math.max(0, (hours * 80) - discountAmount);
+
+            document.getElementById('calcPriceVan').innerText = finalVanPrice;
+            document.getElementById('calcPriceHelper').innerText = finalHelperPrice;
+
+            syncFormToCalculator();
+        }
+
+        function syncFormToCalculator() {
+            const currentSelectedPlan = document.getElementById('plan-select').value;
+            const vanBox = document.getElementById('calcBoxVan');
+            const helperBox = document.getElementById('calcBoxHelper');
+
+            if(currentSelectedPlan === 'van') {
+                vanBox.classList.add('highlighted-plan');
+                helperBox.classList.remove('highlighted-plan');
+            } else {
+                helperBox.classList.add('highlighted-plan');
+                vanBox.classList.remove('highlighted-plan');
+            }
+        }
+
+        function selectPlanAndScroll(planType) {
+            const planDropdown = document.getElementById('plan-select');
+            planDropdown.value = planType;
+
+            updateCalculatedPrices();
+            document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
         }
 
         function initLogo3DAnimation() {
@@ -1165,12 +1388,21 @@
 
         function initTheme() {
             const savedTheme = localStorage.getItem('tampereMoveTheme');
-            if (savedTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                document.getElementById('themeToggleBtn').innerText = '☀️';
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                themeToggleBtn.innerText = savedTheme === 'light' ? '☀️' : '🌙';
             } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                document.getElementById('themeToggleBtn').innerText = '🌙';
+                // Read modern desktop system preferred color schema rules natively
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                if (prefersLight) {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    themeToggleBtn.innerText = '☀️';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggleBtn.innerText = '🌙';
+                }
             }
         }
 
@@ -1189,12 +1421,23 @@
 
         function setupCalendarConstraints() {
             const dateInput = document.getElementById('move-date');
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
-            dateInput.min = `${year}-${month}-${day}`;
-            dateInput.value = `${year}-${month}-${day}`;
+            if(dateInput) {
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const day = String(today.getDate()).padStart(2, '0');
+
+                dateInput.min = `${year}-${month}-${day}`;
+
+                const nextYear = new Date();
+                nextYear.setFullYear(today.getFullYear() + 1);
+                const maxYear = nextYear.getFullYear();
+                const maxMonth = String(nextYear.getMonth() + 1).padStart(2, '0');
+                const maxDay = String(nextYear.getDate()).padStart(2, '0');
+                dateInput.max = `${maxYear}-${maxMonth}-${maxDay}`;
+
+                dateInput.value = `${year}-${month}-${day}`;
+            }
         }
 
         function setLanguage(lang) {
@@ -1213,6 +1456,7 @@
                     }
                 }
             });
+            updateCalculatedPrices();
         }
 
         function toggleLanguage() {
@@ -1221,8 +1465,8 @@
 
         function handleBookingSubmit() {
             const submitBtn = document.getElementById('submitBtn');
-            const originalTextEn = submitBtn.getAttribute('data-en');
-            const originalTextFi = submitBtn.getAttribute('data-fi');
+            const bookingForm = document.getElementById('bookingForm');
+            const successPanel = document.getElementById('successState');
 
             submitBtn.disabled = true;
             submitBtn.innerText = currentLang === 'fi' ? 'Lähetetään...' : 'Sending booking...';
@@ -1232,6 +1476,7 @@
                 toAddress: document.getElementById('to-address').value,
                 phoneNumber: document.getElementById('phone-number').value,
                 moveDate: document.getElementById('move-date').value,
+                moveTime: document.getElementById('move-time').value,
                 plan: document.getElementById('plan-select').value,
                 student: document.getElementById('student-check').value
             };
@@ -1243,21 +1488,14 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                if (currentLang === 'fi') {
-                    alert('Varaustiedot tallennettu! Paikallinen tiimimme lähettää vahvistustekstiviestin puhelimeesi 15 minuutin kuluessa.');
-                } else {
-                    alert('Booking saved to our dashboard! Our local team will text your mobile within 15 minutes to confirm.');
-                }
-                document.getElementById('bookingForm').reset();
-                setupCalendarConstraints();
+                bookingForm.style.display = 'none';
+                successPanel.style.display = 'block';
+                document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
             })
             .catch(err => {
                 console.error("Booking Error: ", err);
                 alert(currentLang === 'fi' ? 'Hups! Jotain meni vikaan. Yritä uudelleen.' : 'Oops! Something went wrong. Please try again.');
-            })
-            .finally(() => {
                 submitBtn.disabled = false;
-                submitBtn.innerText = currentLang === 'fi' ? originalTextFi : originalTextEn;
             });
         }
     </script>
