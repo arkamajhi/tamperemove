@@ -12,7 +12,7 @@
       "@context": "https://schema.org",
       "@type": "MovingCompany",
       "name": "TampereMove",
-      "image": "https://tamperemove.fi/assets/tampere-muuttopalvelu-muuttoauto.png",
+      "image": "https://tamperemove.fi/assets/tampere-muuttopalvelu-muuttoauto-transparent.png",
       "telephone": "+358449318824",
       "url": "https://tamperemove.fi",
       "priceRange": "$$",
@@ -39,15 +39,45 @@
     </script>
 
     <style>
+        /* CSS Variable System Supporting Both Modes Dynamically */
         :root {
-            --bg-main: #090D16;
-            --bg-card: #131926;
+            /* Common System Tokens */
             --primary: #22C55E;
             --primary-hover: #16A34A;
+            --discount-blue: #3B82F6;
+            --transition-speed: 0.2s;
+
+            /* Dark Mode Core Values (Default State) */
+            --bg-main: #090D16;
+            --bg-card: #131926;
             --text-main: #F9FAFB;
             --text-muted: #9CA3AF;
             --border: #1E293B;
-            --discount-blue: #3B82F6;
+            --input-bg: #090D16;
+            --hero-glow: rgba(34, 197, 94, 0.15);
+            --header-bg: rgba(9, 13, 22, 0.85);
+            --call-gradient-end: #0d2718;
+            --modal-overlay-bg: rgba(4, 7, 13, 0.9);
+
+            /* High-Performance Magic Filter: Inverts dark pixels to white while keeping greens green */
+            --logo-filter: invert(0.9) hue-rotate(180deg) brightness(1.2);
+        }
+
+        /* Light Mode Token Configuration overrides — Balanced and Premium Palette */
+        [data-theme="light"] {
+            --bg-main: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --border: #CBD5E1;
+            --input-bg: #F1F5F9;
+            --hero-glow: rgba(34, 197, 94, 0.05);
+            --header-bg: rgba(248, 250, 252, 0.85);
+            --call-gradient-end: #F0FDF4;
+            --modal-overlay-bg: rgba(15, 23, 42, 0.4);
+
+            /* No adjustments needed for light backgrounds */
+            --logo-filter: none;
         }
 
         * {
@@ -61,6 +91,7 @@
             background-color: var(--bg-main);
             color: var(--text-main);
             line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
         .container {
@@ -75,9 +106,10 @@
             padding: 14px 0;
             position: sticky;
             top: 0;
-            background: rgba(9, 13, 22, 0.85);
+            background: var(--header-bg);
             backdrop-filter: blur(12px);
             z-index: 90;
+            transition: background var(--transition-speed), border-color var(--transition-speed);
         }
 
         .nav-container {
@@ -92,6 +124,7 @@
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
+            transition: color var(--transition-speed);
         }
 
         .logo span {
@@ -101,7 +134,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         nav a {
@@ -109,7 +142,8 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
-            transition: color 0.2s;
+            margin-right: 15px;
+            transition: color var(--transition-speed);
         }
 
         nav a:hover {
@@ -118,23 +152,36 @@
 
         .btn-call-nav {
             background: rgba(34, 197, 94, 0.1);
-            border: 1px solid var(--primary);
+            border: 1.5px solid var(--primary);
             color: var(--primary);
             padding: 8px 14px;
             border-radius: 6px;
             font-weight: 700;
             font-size: 13px;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all var(--transition-speed);
+        }
+
+        [data-theme="light"] .btn-call-nav {
+            background: rgba(34, 197, 94, 0.06);
+            color: #15803D;
+            border-color: #16A34A;
         }
 
         .btn-call-nav:hover {
             background: var(--primary);
             color: #042F1A;
+            border-color: var(--primary);
         }
 
-        .lang-toggle {
-            background: var(--bg-main);
+        [data-theme="light"] .btn-call-nav:hover {
+            background: #16A34A;
+            color: #FFFFFF;
+            border-color: #16A34A;
+        }
+
+        .utility-btn {
+            background: var(--bg-card);
             border: 1px solid var(--border);
             color: var(--text-main);
             padding: 6px 12px;
@@ -142,10 +189,14 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 13px;
-            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed);
+            height: 32px;
         }
 
-        .lang-toggle:hover {
+        .utility-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
         }
@@ -154,6 +205,7 @@
         .hero {
             padding: 70px 0 50px 0;
             border-bottom: 1px solid var(--border);
+            transition: border-color var(--transition-speed);
         }
 
         .hero-flex {
@@ -179,8 +231,9 @@
             width: 280px;
             height: 280px;
             object-fit: contain;
-            filter: drop-shadow(0 10px 25px rgba(34, 197, 94, 0.15));
+            filter: drop-shadow(0 10px 25px var(--hero-glow)) var(--logo-filter);
             animation: floatAnim 4s ease-in-out infinite;
+            transition: filter var(--transition-speed);
         }
 
         @keyframes floatAnim {
@@ -202,6 +255,11 @@
             letter-spacing: 0.5px;
         }
 
+        [data-theme="light"] .seo-badge {
+            background: #DCFCE7;
+            color: #15803D;
+        }
+
         h1 {
             font-size: 42px;
             font-weight: 800;
@@ -214,11 +272,16 @@
             color: var(--primary);
         }
 
+        [data-theme="light"] h1 span {
+            color: #16A34A;
+        }
+
         .hero p {
             font-size: 17px;
             color: var(--text-muted);
             margin-bottom: 30px;
             max-width: 580px;
+            transition: color var(--transition-speed);
         }
 
         .cta-group {
@@ -235,7 +298,7 @@
             text-decoration: none;
             cursor: pointer;
             font-size: 15px;
-            transition: all 0.2s;
+            transition: all var(--transition-speed);
             text-align: center;
         }
 
@@ -245,8 +308,17 @@
             border: none;
         }
 
+        [data-theme="light"] .btn-primary {
+            background-color: #16A34A;
+            color: #FFFFFF;
+        }
+
         .btn-primary:hover {
             background-color: var(--primary-hover);
+        }
+
+        [data-theme="light"] .btn-primary:hover {
+            background-color: #15803D;
         }
 
         .btn-primary:disabled {
@@ -257,12 +329,14 @@
         }
 
         .btn-secondary {
-            border: 1px solid var(--border);
+            border: 1.5px solid var(--border);
             color: var(--text-main);
+            background-color: transparent;
         }
 
         .btn-secondary:hover {
             background-color: var(--bg-card);
+            border-color: var(--text-muted);
         }
 
         /* Value Props */
@@ -276,6 +350,11 @@
             padding: 30px;
             margin-top: 60px;
             margin-bottom: 60px;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        [data-theme="light"] .seo-props-row {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         }
 
         .prop-item h4 {
@@ -287,6 +366,7 @@
         .prop-item p {
             color: var(--text-muted);
             font-size: 13.5px;
+            transition: color var(--transition-speed);
         }
 
         /* Pricing Grid */
@@ -303,6 +383,7 @@
             color: var(--text-muted);
             margin-bottom: 40px;
             font-size: 15px;
+            transition: color var(--transition-speed);
         }
 
         .grid {
@@ -320,7 +401,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        [data-theme="light"] .card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
 
         .card:hover {
@@ -336,19 +421,22 @@
         .card-header p {
             color: var(--text-muted);
             font-size: 14px;
+            transition: color var(--transition-speed);
         }
 
         .price {
             font-size: 42px;
             font-weight: 800;
             margin: 20px 0;
-            color: white;
+            color: var(--text-main);
+            transition: color var(--transition-speed);
         }
 
         .price span {
             font-size: 16px;
             color: var(--text-muted);
             font-weight: normal;
+            transition: color var(--transition-speed);
         }
 
         .features-list {
@@ -356,14 +444,16 @@
             margin: 20px 0 30px 0;
             border-top: 1px solid var(--border);
             padding-top: 20px;
+            transition: border-color var(--transition-speed);
         }
 
         .features-list li {
             margin-bottom: 12px;
-            color: #E5E7EB;
+            color: var(--text-main);
             display: flex;
             align-items: center;
             font-size: 15px;
+            transition: color var(--transition-speed);
         }
 
         .features-list li::before {
@@ -371,6 +461,10 @@
             color: var(--primary);
             margin-right: 12px;
             font-weight: bold;
+        }
+
+        [data-theme="light"] .features-list li::before {
+            color: #16A34A;
         }
 
         .student-banner {
@@ -383,24 +477,35 @@
         }
 
         .student-banner strong {
+            color: #3B82F6;
+        }
+
+        [data-theme="dark"] .student-banner strong {
             color: #60A5FA;
         }
 
         /* Call Option Highlight Block */
         .call-option-block {
-            background: linear-gradient(135deg, #131926 0%, #0d2718 100%);
-            border: 1px solid var(--primary);
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--call-gradient-end) 100%);
+            border: 1.5px solid var(--primary);
             border-radius: 12px;
             padding: 30px;
             max-width: 600px;
             margin: 0 auto 25px auto;
             text-align: center;
+            transition: border-color var(--transition-speed);
+        }
+
+        [data-theme="light"] .call-option-block {
+            border-color: #16A34A;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
         }
 
         .call-option-block h3 {
             font-size: 20px;
             margin-bottom: 8px;
-            color: white;
+            color: var(--text-main);
+            transition: color var(--transition-speed);
         }
 
         .phone-link {
@@ -411,6 +516,10 @@
             text-decoration: none;
             margin: 10px 0;
             transition: transform 0.2s;
+        }
+
+        [data-theme="light"] .phone-link {
+            color: #16A34A;
         }
 
         .phone-link:hover {
@@ -425,6 +534,11 @@
             padding: 40px;
             max-width: 600px;
             margin: 0 auto 80px auto;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        [data-theme="light"] .booking-section {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
         .form-group {
@@ -437,16 +551,18 @@
             font-size: 14px;
             color: var(--text-muted);
             font-weight: 600;
+            transition: color var(--transition-speed);
         }
 
         .form-control {
             width: 100%;
             padding: 12px 16px;
-            background: var(--bg-main);
+            background: var(--input-bg);
             border: 1px solid var(--border);
             border-radius: 6px;
-            color: white;
+            color: var(--text-main);
             font-size: 15px;
+            transition: all var(--transition-speed);
         }
 
         .form-control:focus {
@@ -454,9 +570,18 @@
             border-color: var(--primary);
         }
 
+        [data-theme="light"] .form-control:focus {
+            border-color: #16A34A;
+            background: #FFFFFF;
+        }
+
         input[type="date"].form-control {
             color-scheme: dark;
             cursor: pointer;
+        }
+
+        [data-theme="light"] input[type="date"].form-control {
+            color-scheme: light;
         }
 
         .privacy-notice {
@@ -465,6 +590,7 @@
             margin-top: 6px;
             display: block;
             line-height: 1.4;
+            transition: color var(--transition-speed);
         }
 
         /* Language Interface Overlay */
@@ -474,14 +600,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(4, 7, 13, 0.9);
+            background: var(--modal-overlay-bg);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, background-color var(--transition-speed);
         }
 
         .modal-overlay.active {
@@ -497,7 +623,12 @@
             text-align: center;
             max-width: 450px;
             width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        [data-theme="light"] .modal-content {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
 
         .modal-title {
@@ -510,6 +641,7 @@
             color: var(--text-muted);
             font-size: 15px;
             margin-bottom: 30px;
+            transition: color var(--transition-speed);
         }
 
         .modal-btn-group {
@@ -525,9 +657,9 @@
             font-size: 16px;
             cursor: pointer;
             border: 1px solid var(--border);
-            background: var(--bg-main);
-            color: white;
-            transition: all 0.2s;
+            background: var(--input-bg);
+            color: var(--text-main);
+            transition: all var(--transition-speed);
         }
 
         .modal-btn:hover {
@@ -536,12 +668,18 @@
             transform: translateY(-2px);
         }
 
+        [data-theme="light"] .modal-btn:hover {
+            border-color: #16A34A;
+            color: #16A34A;
+        }
+
         footer {
             border-top: 1px solid var(--border);
             padding: 40px 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 14px;
+            transition: border-color var(--transition-speed), color var(--transition-speed);
         }
 
         @media (max-width: 768px) {
@@ -579,7 +717,8 @@
                     <a href="#book" data-en="Book Instantly" data-fi="Varaa Heti">Book Instantly</a>
                 </nav>
                 <a href="tel:+358449318824" class="btn-call-nav">📞 <span data-en="Call Now" data-fi="Soita Heti">Call Now</span></a>
-                <button class="lang-toggle" onclick="toggleLanguage()" id="langToggleBtn">FI</button>
+                <button class="utility-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle display theme">🌙</button>
+                <button class="utility-btn" onclick="toggleLanguage()" id="langToggleBtn">FI</button>
             </div>
         </div>
     </header>
@@ -598,7 +737,7 @@
                     </div>
                 </div>
                 <div class="hero-logo-wrapper">
-                    <img src="assets/tampere-muuttopalvelu-muuttoauto.png"
+                    <img src="assets/tampere-muuttopalvelu-muuttoauto-transparent.png"
                          alt="TampereMove Muuttopalvelu Tampere — Luotettava muuttoauto ja halpa muuttoapu Pirkanmaa"
                          class="hero-brand-logo">
                 </div>
@@ -731,6 +870,8 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             setupCalendarConstraints();
+            initTheme();
+
             const savedLang = localStorage.getItem('tampereMoveLang');
             if (savedLang) {
                 setLanguage(savedLang);
@@ -739,6 +880,41 @@
             }
         });
 
+        /* --- Theme Management Scripting --- */
+        function initTheme() {
+            const savedTheme = localStorage.getItem('tampereMoveTheme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('themeToggleBtn').innerText = '☀️';
+            } else if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('themeToggleBtn').innerText = '🌙';
+            } else {
+                const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                if (systemPrefersLight) {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    document.getElementById('themeToggleBtn').innerText = '☀️';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.getElementById('themeToggleBtn').innerText = '🌙';
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const activeTheme = document.documentElement.getAttribute('data-theme');
+            if (activeTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('tampereMoveTheme', 'dark');
+                document.getElementById('themeToggleBtn').innerText = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('tampereMoveTheme', 'light');
+                document.getElementById('themeToggleBtn').innerText = '☀️';
+            }
+        }
+
+        /* --- Operations & Booking Management --- */
         function setupCalendarConstraints() {
             const dateInput = document.getElementById('move-date');
             const today = new Date();
