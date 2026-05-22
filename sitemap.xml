@@ -2,8 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tamperemove.fi/</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <url>
+    <loc>https://tamperemove.fi/areas/hervanta.html</loc>
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tamperemove.fi/areas/kaleva.html</loc>
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tamperemove.fi/areas/vuores.html</loc>
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url><loc>https://tamperemove.fi/areas/hervanta/lumo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tamperemove.fi/areas/hervanta/mikontalo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tamperemove.fi/areas/hervanta/paawola.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tamperemove.fi/areas/hervanta/sato.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tamperemove.fi/areas/hervanta/tuulanhovi.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tamperemove.fi/areas/hervanta/veikkola.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tamperemove.fi/areas/hervanta/wainola.html</loc><priority>0.6</priority></url>
 </urlset>
