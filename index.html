@@ -12,7 +12,7 @@
       "@context": "https://schema.org",
       "@type": "MovingCompany",
       "name": "TampereMove",
-      "image": "https://tamperemove.fi/assets/tampere-muuttopalvelu-muuttoauto-transparent.png",
+      "image": "assets/tampere-muuttopalvelu-muuttoauto-transparent.png",
       "telephone": "+358449318824",
       "url": "https://tamperemove.fi",
       "priceRange": "$$",
@@ -41,11 +41,10 @@
     <style>
         /* CSS Variable System Supporting Both Modes Dynamically */
         :root {
-            /* Common System Tokens */
             --primary: #22C55E;
             --primary-hover: #16A34A;
             --discount-blue: #3B82F6;
-            --transition-speed: 0.2s;
+            --transition-speed: 0.25s;
 
             /* Dark Mode Core Values (Default State) */
             --bg-main: #090D16;
@@ -59,11 +58,12 @@
             --call-gradient-end: #0d2718;
             --modal-overlay-bg: rgba(4, 7, 13, 0.9);
 
-            /* High-Performance Magic Filter: Inverts dark pixels to white while keeping greens green */
             --logo-filter: invert(0.9) hue-rotate(180deg) brightness(1.2);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Light Mode Token Configuration overrides — Balanced and Premium Palette */
+        /* Light Mode Token Configuration Overrides */
         [data-theme="light"] {
             --bg-main: #F8FAFC;
             --bg-card: #FFFFFF;
@@ -76,8 +76,9 @@
             --call-gradient-end: #F0FDF4;
             --modal-overlay-bg: rgba(15, 23, 42, 0.4);
 
-            /* No adjustments needed for light backgrounds */
             --logo-filter: none;
+            --shadow-sm: 0 2px 8px rgba(148, 163, 184, 0.1);
+            --shadow-md: 0 10px 30px rgba(148, 163, 184, 0.15);
         }
 
         * {
@@ -85,6 +86,7 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -95,12 +97,12 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Top Bar Navigation */
+        /* Sticky Header Navigation */
         header {
             border-bottom: 1px solid var(--border);
             padding: 14px 0;
@@ -108,6 +110,7 @@
             top: 0;
             background: var(--header-bg);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 90;
             transition: background var(--transition-speed), border-color var(--transition-speed);
         }
@@ -124,7 +127,10 @@
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
-            transition: color var(--transition-speed);
+            transition: transform var(--transition-speed);
+        }
+        .logo:hover {
+            transform: scale(1.02);
         }
 
         .logo span {
@@ -134,20 +140,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 12px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            margin-right: 15px;
-            transition: color var(--transition-speed);
-        }
-
-        nav a:hover {
-            color: var(--primary);
+            gap: 10px;
         }
 
         .btn-call-nav {
@@ -157,8 +150,11 @@
             padding: 8px 14px;
             border-radius: 6px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             transition: all var(--transition-speed);
         }
 
@@ -172,74 +168,85 @@
             background: var(--primary);
             color: #042F1A;
             border-color: var(--primary);
-        }
-
-        [data-theme="light"] .btn-call-nav:hover {
-            background: #16A34A;
-            color: #FFFFFF;
-            border-color: #16A34A;
+            transform: translateY(-1px);
         }
 
         .utility-btn {
             background: var(--bg-card);
             border: 1px solid var(--border);
             color: var(--text-main);
-            padding: 6px 12px;
+            padding: 6px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all var(--transition-speed);
-            height: 32px;
+            height: 38px;
+            width: 38px;
         }
-
         .utility-btn:hover {
             border-color: var(--primary);
-            color: var(--primary);
+            transform: translateY(-1px);
         }
 
-        /* Hero Layout split for the logo layout */
+        /* Hero Layout - Responsive Layout */
         .hero {
-            padding: 70px 0 50px 0;
+            padding: 40px 0;
             border-bottom: 1px solid var(--border);
-            transition: border-color var(--transition-speed);
         }
 
         .hero-flex {
             display: flex;
+            flex-direction: column-reverse;
             align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            text-align: left;
+            gap: 32px;
+            text-align: center;
         }
 
         .hero-text {
-            flex: 1;
+            width: 100%;
         }
 
         .hero-logo-wrapper {
-            flex-shrink: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 10px;
+            perspective: 1000px;
+            cursor: pointer;
         }
 
         .hero-brand-logo {
-            width: 280px;
-            height: 280px;
+            width: 180px;
+            height: 180px;
             object-fit: contain;
-            filter: drop-shadow(0 10px 25px var(--hero-glow)) var(--logo-filter);
-            animation: floatAnim 4s ease-in-out infinite;
-            transition: filter var(--transition-speed);
+            filter: drop-shadow(0 10px 20px var(--hero-glow)) var(--logo-filter);
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), filter var(--transition-speed);
+
+            /* Continuous ambient pulse animation when not hovered */
+            animation: brandPulse 3s ease-in-out infinite alternate;
         }
 
-        @keyframes floatAnim {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
+        /* Continuous Ambient Pulse Keyframe Logic */
+        @keyframes brandPulse {
+            0% {
+                transform: scale(0.97);
+                filter: drop-shadow(0 5px 10px rgba(34, 197, 94, 0.1)) var(--logo-filter);
+            }
+            100% {
+                transform: scale(1.03);
+                filter: drop-shadow(0 15px 25px rgba(34, 197, 94, 0.25)) var(--logo-filter);
+            }
+        }
+
+        /* Pause the pulse animation immediately on hover so it doesn't fight the JS 3D tilt tracking */
+        .hero-logo-wrapper:hover .hero-brand-logo {
+            animation-play-state: paused;
         }
 
         .seo-badge {
@@ -249,7 +256,7 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -260,16 +267,19 @@
             color: #15803D;
         }
 
+        /* FIXED TYPESETTING FLOW */
         h1 {
-            font-size: 42px;
+            font-size: clamp(28px, 4.5vw, 42px);
             font-weight: 800;
             margin-bottom: 20px;
-            letter-spacing: -1px;
+            letter-spacing: -0.03em;
             line-height: 1.2;
+            text-wrap: balance;
         }
 
         h1 span {
             color: var(--primary);
+            display: inline-block;
         }
 
         [data-theme="light"] h1 span {
@@ -277,29 +287,31 @@
         }
 
         .hero p {
-            font-size: 17px;
+            font-size: clamp(15px, 1.8vw, 17px);
             color: var(--text-muted);
-            margin-bottom: 30px;
-            max-width: 580px;
-            transition: color var(--transition-speed);
+            margin-bottom: 32px;
+            max-width: 100%;
         }
 
         .cta-group {
             display: flex;
-            justify-content: flex-start;
-            gap: 15px;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
         }
 
         .btn {
-            display: inline-block;
-            padding: 14px 30px;
+            display: block;
+            width: 100%;
+            padding: 16px 26px;
             border-radius: 8px;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 16px;
             transition: all var(--transition-speed);
             text-align: center;
+            box-shadow: var(--shadow-sm);
         }
 
         .btn-primary {
@@ -315,10 +327,8 @@
 
         .btn-primary:hover {
             background-color: var(--primary-hover);
-        }
-
-        [data-theme="light"] .btn-primary:hover {
-            background-color: #15803D;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-primary:disabled {
@@ -326,6 +336,7 @@
             color: #a3e635;
             cursor: not-allowed;
             opacity: 0.6;
+            transform: none;
         }
 
         .btn-secondary {
@@ -333,127 +344,220 @@
             color: var(--text-main);
             background-color: transparent;
         }
-
         .btn-secondary:hover {
-            background-color: var(--bg-card);
-            border-color: var(--text-muted);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        /* Value Props */
+        /* SVG Value Proposition Cards Row */
         .seo-props-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin: 36px 0;
+        }
+
+        .prop-item {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 30px;
-            margin-top: 60px;
-            margin-bottom: 60px;
-            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+            padding: 24px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            transition: border-color var(--transition-speed), transform var(--transition-speed);
+        }
+        .prop-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
         }
 
-        [data-theme="light"] .seo-props-row {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        .prop-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary);
+            border-radius: 8px;
+            flex-shrink: 0;
         }
 
-        .prop-item h4 {
+        [data-theme="light"] .prop-icon-wrapper {
+            background: #DCFCE7;
+            color: #16A34A;
+        }
+
+        .prop-icon {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
+
+        .prop-text h4 {
             margin-bottom: 6px;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
         }
 
-        .prop-item p {
+        .prop-text p {
             color: var(--text-muted);
-            font-size: 13.5px;
-            transition: color var(--transition-speed);
+            font-size: 15px;
         }
 
-        /* Pricing Grid */
+        /* Fleet Trust Proof Section */
+        .trust-proof-section {
+            padding: 36px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .proof-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .proof-image-wrapper {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .proof-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .proof-image-wrapper:hover .proof-img {
+            transform: scale(1.03);
+        }
+
+        .proof-text-side h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .proof-text-side p {
+            color: var(--text-muted);
+            font-size: 15.5px;
+            margin-bottom: 18px;
+        }
+
+        .proof-mini-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .proof-bullets {
+            list-style: none;
+        }
+
+        .proof-bullets li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            transition: transform var(--transition-speed);
+        }
+        .proof-bullets li:hover {
+            transform: translateX(4px);
+        }
+
+        .proof-bullets li span {
+            color: var(--primary);
+        }
+
+        /* Pricing Area Layout */
         .section-title {
             text-align: center;
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 800;
-            margin: 60px 0 10px 0;
+            margin: 44px 0 10px 0;
             letter-spacing: -0.5px;
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 36px;
             font-size: 15px;
-            transition: color var(--transition-speed);
         }
 
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            margin-bottom: 44px;
         }
 
         .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 35px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s, background-color var(--transition-speed), border-color var(--transition-speed);
+            transition: all var(--transition-speed);
+            box-shadow: var(--shadow-sm);
         }
-
-        [data-theme="light"] .card {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-
         .card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
         }
 
         .card-header h3 {
             font-size: 22px;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .card-header p {
             color: var(--text-muted);
-            font-size: 14px;
-            transition: color var(--transition-speed);
+            font-size: 15px;
         }
 
         .price {
-            font-size: 42px;
+            font-size: 40px;
             font-weight: 800;
-            margin: 20px 0;
+            margin: 18px 0;
             color: var(--text-main);
-            transition: color var(--transition-speed);
         }
 
         .price span {
             font-size: 16px;
             color: var(--text-muted);
             font-weight: normal;
-            transition: color var(--transition-speed);
         }
 
         .features-list {
             list-style: none;
-            margin: 20px 0 30px 0;
+            margin: 18px 0 28px 0;
             border-top: 1px solid var(--border);
-            padding-top: 20px;
-            transition: border-color var(--transition-speed);
+            padding-top: 18px;
         }
 
         .features-list li {
             margin-bottom: 12px;
             color: var(--text-main);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             font-size: 15px;
-            transition: color var(--transition-speed);
         }
 
         .features-list li::before {
@@ -461,88 +565,152 @@
             color: var(--primary);
             margin-right: 12px;
             font-weight: bold;
-        }
-
-        [data-theme="light"] .features-list li::before {
-            color: #16A34A;
+            flex-shrink: 0;
         }
 
         .student-banner {
             background: rgba(59, 130, 246, 0.08);
             border: 1px dashed var(--discount-blue);
             border-radius: 8px;
-            padding: 20px;
+            padding: 18px;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 44px;
+            font-size: 15px;
+            transition: transform var(--transition-speed);
+        }
+        .student-banner:hover {
+            transform: scale(1.01);
         }
 
         .student-banner strong {
             color: #3B82F6;
         }
 
-        [data-theme="dark"] .student-banner strong {
-            color: #60A5FA;
+        /* Optimized FAQ Accordion Section */
+        .faq-section {
+            margin: 44px 0;
         }
 
-        /* Call Option Highlight Block */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color var(--transition-speed);
+        }
+
+        .faq-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            text-align: left;
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            transition: color var(--transition-speed), padding-left var(--transition-speed);
+        }
+        .faq-trigger:hover {
+            color: var(--primary);
+            padding-left: 30px;
+        }
+
+        .faq-icon {
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: transform var(--transition-speed);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s cubic-bezier(0, 1, 0, 1);
+            padding: 0 24px;
+        }
+
+        .faq-item.active {
+            border-color: var(--primary);
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 1000px;
+            transition: max-height 0.25s cubic-bezier(1, 0, 1, 0);
+            padding-bottom: 20px;
+        }
+
+        .faq-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Booking Communications Blocks */
         .call-option-block {
             background: linear-gradient(135deg, var(--bg-card) 0%, var(--call-gradient-end) 100%);
             border: 1.5px solid var(--primary);
             border-radius: 12px;
-            padding: 30px;
-            max-width: 600px;
-            margin: 0 auto 25px auto;
+            padding: 26px;
+            margin-bottom: 22px;
             text-align: center;
-            transition: border-color var(--transition-speed);
+            transition: transform var(--transition-speed);
+        }
+        .call-option-block:hover {
+            transform: translateY(-2px);
         }
 
         [data-theme="light"] .call-option-block {
             border-color: #16A34A;
-            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
         }
 
         .call-option-block h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-            color: var(--text-main);
-            transition: color var(--transition-speed);
+            font-size: 19px;
+            margin-bottom: 6px;
         }
 
         .phone-link {
-            display: inline-block;
+            display: block;
             font-size: 28px;
             font-weight: 800;
             color: var(--primary);
             text-decoration: none;
             margin: 10px 0;
-            transition: transform 0.2s;
+            transition: transform var(--transition-speed);
+            display: inline-block;
+        }
+        .phone-link:hover {
+            transform: scale(1.03);
         }
 
         [data-theme="light"] .phone-link {
             color: #16A34A;
         }
 
-        .phone-link:hover {
-            transform: scale(1.03);
-        }
-
-        /* Booking Form */
         .booking-section {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto 80px auto;
-            transition: background-color var(--transition-speed), border-color var(--transition-speed);
-        }
-
-        [data-theme="light"] .booking-section {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+            padding: 28px;
+            margin-bottom: 64px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
@@ -551,49 +719,41 @@
             font-size: 14px;
             color: var(--text-muted);
             font-weight: 600;
-            transition: color var(--transition-speed);
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 16px;
+            padding: 15px;
             background: var(--input-bg);
             border: 1px solid var(--border);
             border-radius: 6px;
             color: var(--text-main);
             font-size: 15px;
-            transition: all var(--transition-speed);
+            -webkit-appearance: none;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
         }
 
-        [data-theme="light"] .form-control:focus {
-            border-color: #16A34A;
-            background: #FFFFFF;
-        }
-
-        input[type="date"].form-control {
-            color-scheme: dark;
-            cursor: pointer;
-        }
-
-        [data-theme="light"] input[type="date"].form-control {
-            color-scheme: light;
+        .form-row-2 {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
         .privacy-notice {
-            font-size: 12px;
+            font-size: 12.5px;
             color: var(--text-muted);
-            margin-top: 6px;
+            margin-top: 8px;
             display: block;
             line-height: 1.4;
-            transition: color var(--transition-speed);
         }
 
-        /* Language Interface Overlay */
+        /* Language Selector Modal Box */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -607,7 +767,7 @@
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease, background-color var(--transition-speed);
+            transition: opacity 0.3s ease;
         }
 
         .modal-overlay.active {
@@ -619,39 +779,33 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 40px;
+            padding: 36px 28px;
             text-align: center;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transition: background-color var(--transition-speed), border-color var(--transition-speed);
-        }
-
-        [data-theme="light"] .modal-content {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            width: 88%;
+            max-width: 400px;
+            box-shadow: var(--shadow-md);
         }
 
         .modal-title {
             font-size: 24px;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .modal-subtitle {
             color: var(--text-muted);
             font-size: 15px;
-            margin-bottom: 30px;
-            transition: color var(--transition-speed);
+            margin-bottom: 26px;
         }
 
         .modal-btn-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
         .modal-btn {
-            padding: 16px;
+            padding: 15px;
             border-radius: 8px;
             font-weight: 700;
             font-size: 16px;
@@ -661,37 +815,44 @@
             color: var(--text-main);
             transition: all var(--transition-speed);
         }
-
         .modal-btn:hover {
             border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        [data-theme="light"] .modal-btn:hover {
-            border-color: #16A34A;
-            color: #16A34A;
+            transform: translateY(-1px);
         }
 
         footer {
             border-top: 1px solid var(--border);
-            padding: 40px 0;
+            padding: 36px 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 14px;
-            transition: border-color var(--transition-speed), color var(--transition-speed);
         }
 
-        @media (max-width: 768px) {
-            .hero-flex { flex-direction: column-reverse; text-align: center; gap: 30px; }
-            h1 { font-size: 32px; }
-            .hero p { margin: 0 auto 30px auto; }
-            .cta-group { justify-content: center; }
-            .hero-brand-logo { width: 200px; height: 200px; }
-            .grid { grid-template-columns: 1fr; }
-            .seo-props-row { grid-template-columns: 1fr; }
-            .modal-btn-group { grid-template-columns: 1fr; }
-            .nav-right nav { display: none; }
+        /* Desktop Media Queries */
+        @media (min-width: 769px) {
+            .hero { padding: 60px 0; }
+            .hero-flex { display: grid; grid-template-columns: 1.25fr 0.75fr; text-align: left; gap: 40px; }
+            .hero-brand-logo { width: 260px; height: 260px; }
+
+            .hero p { max-width: 54ch; }
+            .section-subtitle { font-size: 16px; max-width: 65ch; margin-left: auto; margin-right: auto; }
+            .prop-text p { max-width: 32ch; }
+            .proof-text-side p { font-size: 16px; max-width: 55ch; }
+            .card-header p { max-width: 34ch; }
+            .faq-content p { max-width: 78ch; }
+
+            .cta-group { flex-direction: row; width: auto; }
+            .btn { width: auto; }
+            .seo-props-row { flex-direction: row; gap: 24px; margin: 54px 0; }
+            .prop-item { flex: 1; }
+            .proof-grid { grid-template-columns: 1.1fr 0.9fr; display: grid; gap: 54px; align-items: center; }
+            .grid { flex-direction: row; gap: 26px; }
+            .card { flex: 1; }
+            .form-row-2 { flex-direction: row; }
+            .form-row-2 .form-group { flex: 1; }
+            .call-option-block, .booking-section { max-width: 680px; margin-left: auto; margin-right: auto; }
+            .modal-btn-group { flex-direction: row; }
+            .modal-btn { flex: 1; }
         }
     </style>
 </head>
@@ -712,12 +873,8 @@
         <div class="container nav-container">
             <a href="#" class="logo">Tampere<span>Move</span></a>
             <div class="nav-right">
-                <nav>
-                    <a href="#pricing" data-en="Flat Rates" data-fi="Kiinteät Hinnat">Flat Rates</a>
-                    <a href="#book" data-en="Book Instantly" data-fi="Varaa Heti">Book Instantly</a>
-                </nav>
-                <a href="tel:+358449318824" class="btn-call-nav">📞 <span data-en="Call Now" data-fi="Soita Heti">Call Now</span></a>
-                <button class="utility-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle display theme">🌙</button>
+                <a href="tel:+358449318824" class="btn-call-nav">📞 <span data-en="Call" data-fi="Soita">Call</span></a>
+                <button class="utility-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle theme">🌙</button>
                 <button class="utility-btn" onclick="toggleLanguage()" id="langToggleBtn">FI</button>
             </div>
         </div>
@@ -729,11 +886,15 @@
             <div class="hero-flex">
                 <div class="hero-text">
                     <span class="seo-badge" data-en="Fixed Hourly Moving Rates • Pirkanmaa Area" data-fi="Kiinteät Tuntihinnat • Pirkanmaan Alue">Fixed Hourly Moving Rates • Pirkanmaa Area</span>
-                    <h1 data-en="No-Bullsh*t Moving Services<br>in Tampere. <span>Flat Fees.</span>" data-fi="Suoraviivaista muuttopalvelua<br>Tampereella. <span>Kiinteät hinnat.</span>">No-Bullsh*t Moving Services<br>in Tampere. <span>Flat Fees.</span></h1>
+
+                    <h1 data-en="Straightforward Moving Services in Tampere with <span>Flat Fees</span>"
+                        data-fi="Suoraviivaista muuttopalvelua Tampereella <span>kiinteillä hinnoilla</span>">
+                        Straightforward Moving Services in Tampere with <span>Flat Fees</span>
+                    </h1>
+
                     <p data-en="Simple, reliable local moving help with zero surprise charges. No staircase fees, no complex custom quotation wait times. Just pick your plan and go." data-fi="Yksinkertaista ja luotettavaa muuttoapua ilman yllätyskuluja. Ei kerrosmaksuja, ei monimutkaisten tarjouspyyntöjen odottelua. Valitse paketti ja muuta.">Simple, reliable local moving help with zero surprise charges. No staircase fees, no complex custom quotation wait times. Just pick your plan and go.</p>
                     <div class="cta-group">
                         <a href="#book" class="btn btn-primary" data-en="Book Your Move Now" data-fi="Varaa muuttosi nyt">Book Your Move Now</a>
-                        <a href="tel:+358449318824" class="btn btn-secondary" data-en="Call to Book" data-fi="Soita ja varaa">Call to Book</a>
                     </div>
                 </div>
                 <div class="hero-logo-wrapper">
@@ -746,21 +907,56 @@
 
         <section class="seo-props-row">
             <div class="prop-item">
-                <h4 data-en="⏱️ No Extra Fees" data-fi="⏱️ Ei piilokuluja">⏱️ No Extra Fees</h4>
-                <p data-en="We do not charge extra for heavy steps, elevators, or weekends. The rate stays the same." data-fi="Emme veloita ekstraa raskaista portaista, hisseistä tai viikonlopuista. Hinta pysyy samana.">We do not charge extra for heavy steps, elevators, or weekends. The rate stays the same.</p>
+                <div class="prop-icon-wrapper">
+                    <svg class="prop-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+                </div>
+                <div class="prop-text">
+                    <h4 data-en="No Extra Fees" data-fi="Ei piilokuluja">No Extra Fees</h4>
+                    <p data-en="We do not charge extra for heavy steps, elevators, or weekends. The rate stays the same." data-fi="Emme veloita ekstraa raskaista portaista, hisseistä tai viikonlopuista. Hinta pysyy samana.">We do not charge extra for heavy steps, elevators, or weekends. The rate stays the same.</p>
+                </div>
             </div>
             <div class="prop-item">
-                <h4 data-en="📍 100% Local Service" data-fi="📍 100% Paikallinen">📍 100% Local Service</h4>
-                <p data-en="Moving across Hervanta, Kaleva, Keskusta, or nearby Lempäälä, Nokia, and Pirkkala zones." data-fi="Muutot sujuvasti alueilla Hervanta, Kaleva, Keskusta sekä lähialueilla Lempäälä, Nokia ja Pirkkala.">Moving across Hervanta, Kaleva, Keskusta, or nearby Lempäälä, Nokia, and Pirkkala zones.</p>
+                <div class="prop-icon-wrapper">
+                    <svg class="prop-icon" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg>
+                </div>
+                <div class="prop-text">
+                    <h4 data-en="100% Local Service" data-fi="100% Paikallinen">100% Local Service</h4>
+                    <p data-en="Moving across Hervanta, Kaleva, Keskusta, or nearby Lempäälä, Nokia, and Pirkkala zones." data-fi="Muutot sujuvasti alueilla Hervanta, Kaleva, Keskusta sekä lähialueilla Lempäälä, Nokia ja Pirkkala.">Moving across Hervanta, Kaleva, Keskusta, or nearby Lempäälä, Nokia, and Pirkkala zones.</p>
+                </div>
             </div>
             <div class="prop-item">
-                <h4 data-en="💶 Minute-accurate Billing" data-fi="💶 Minuuttitarkka laskutus">💶 Minute-accurate Billing</h4>
-                <p data-en="After our standard 1-hour minimum threshold, you only pay for the exact minutes used." data-fi="Ensimmäisen tunnin vähimmäisveloituksen jälkeen maksat vain minuuttien mukaan käytetystä ajasta.">After our standard 1-hour minimum threshold, you only pay for the exact minutes used.</p>
+                <div class="prop-icon-wrapper">
+                    <svg class="prop-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 13h-2v-1c-1.1 0-2-.9-2-2h1.5c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-1c-1.4 0-2.5-.6-2.5-2s1.1-2 2.5-2V5h2v1c1.1 0 2 .9 2 2H15c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5s.2.5.5.5h1c1.4 0 2.5.7 2.5 2s-1.1 2-2.5 2v1z"/></svg>
+                </div>
+                <div class="prop-text">
+                    <h4 data-en="Minute-accurate Billing" data-fi="Minuuttitarkka laskutus">Minute-accurate Billing</h4>
+                    <p data-en="After our standard 1-hour minimum threshold, you only pay for the exact minutes used." data-fi="Ensimmäisen tunnin vähimmäisveloituksen jälkeen maksat vain minuuttien mukaan käytetystä ajasta.">After our standard 1-hour minimum threshold, you only pay for the exact minutes used.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust-proof-section">
+            <div class="proof-grid">
+                <div class="proof-image-wrapper">
+                    <img src="assets/tampere-moving-van.png"
+                         alt="TampereMove professional local moving team loading a branded cargo van in Tampere"
+                         class="proof-img">
+                </div>
+                <div class="proof-text-side">
+                    <span class="proof-mini-title" data-en="Why Professional Gear Costs Less" data-fi="Miksi ammattitason kalusto säästää rahaa">Why Professional Gear Costs Less</span>
+                    <h3 data-en="Proper Tools Mean a Faster, Cheaper Move" data-fi="Oikeat työkalut tekevät muutosta nopeamman ja halvemman">Proper Tools Mean a Faster, Cheaper Move</h3>
+                    <p data-en="Amateurs with small personal trailers take hours driving back and forth, dragging out your billable clock. We do it in a single trip. By using heavy-duty, commercial-grade vans and specialized gear, we speed up your move significantly—keeping your ultimate hourly invoice incredibly small." data-fi="Amatöörit pienillä peräkärryillä ajavat edestakaisin tuntikausia kuluttaen aikaasi ja rahojasi. Me hoidamme kaiken kerralla. Käyttämällä suuria muuttoautoja ja oikeita kantovälineitä teemme muutostasi huomattavasti nopeamman, mikä pitää lopullisen tuntilaskusi erittäin pienenä.">Amateurs with small personal trailers take hours driving back and forth, dragging out your billable clock. We do it in a single trip. By using heavy-duty, commercial-grade vans and specialized gear, we speed up your move significantly—keeping your ultimate hourly invoice incredibly small.</p>
+                    <ul class="proof-bullets">
+                        <li data-en="<span>⚡</span> Large 10-15m³ Vans – Done in one highly efficient trip" data-fi="<span>⚡</span> Isot 10-15m³ autot – Valmista yhdellä tehokkaalla ajolla"><span>⚡</span> Large 10-15m³ Vans – Done in one highly efficient trip</li>
+                        <li data-en="<span>⚡</span> Hydraulic Tail Lifts – Swift, effortless heavy appliance loading" data-fi="<span>⚡</span> Hydrauliset takalaitanostimet – Nopeaa ja vaivatonta kodinkoneiden lastausta"><span>⚡</span> Hydraulic Tail Lifts – Swift, effortless heavy appliance loading</li>
+                        <li data-en="<span>⚡</span> Uniformed Local Loaders – Fast, synchronized teamwork that saves minutes" data-fi="<span>⚡</span> Ammattitaitoiset muuttomiehet – Nopeaa, synkronoitua tiimityötä säästämään minuutteja"><span>⚡</span> Uniformed Local Loaders – Fast, synchronized teamwork that saves minutes</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <h2 class="section-title" id="pricing" data-en="Choose From Only 2 Simple Plans" data-fi="Valitse kahdesta selkeästä paketista">Choose From Only 2 Simple Plans</h2>
-        <p class="section-subtitle" data-en="Straightforward rates designed to make budgeting easy for everyone." data-fi="Selkeät hinnat, joiden avulla budjetointi on helppoa kaikille.">Straightforward rates designed to make budgeting easy for everyone.</p>
+        <p class="section-subtitle" data-en="Straightforward rates designed to make budgeting easy for everyone" data-fi="Selkeät hinnat, joiden avulla budjetointi on helppoa kaikille">Straightforward rates designed to make budgeting easy for everyone.</p>
 
         <section class="grid">
             <div class="card">
@@ -787,7 +983,7 @@
                 <ul class="features-list">
                     <li data-en="Large 15m³ moving van or truck" data-fi="Suuri 15m³ muuttolaatikko tai auto">Large 15m³ moving van or truck</li>
                     <li data-en="Professional driver PLUS an extra strong lifter" data-fi="Ammattikuljettaja PLUS reipas ja vahva muuttomies">Professional driver PLUS an extra strong lifter</li>
-                    <li data-en="We handle all heavy furniture, beds & boxes" data-fi="Me hoidamme raskaat huonekalut, sängyt ja laatikot puolestasi">We handle all heavy furniture, beds & boxes</li>
+                    <li data-en="We handle all heavy furniture, beds & boxes" data-fi="Me hoidamme raskaat huonekalut, sängyt ja laatikot puolestasi"> We handle all heavy furniture, beds & boxes</li>
                     <li data-en="Zero staircase penalties or floor surcharges" data-fi="Ei kerros- tai porraslisämaksuja">Zero staircase penalties or floor surcharges</li>
                 </ul>
                 <a href="#book" class="btn btn-primary" data-en="Select Full Moving Help" data-fi="Valitse Täysi Muuttoapu">Select Full Moving Help</a>
@@ -802,12 +998,59 @@
             </p>
         </section>
 
-        <h2 class="section-title" id="book" data-en="Instantly Lock Your Moving Date" data-fi="Lukitse muuttopäiväsi heti">Instantly Lock Your Moving Date</h2>
-        <p class="section-subtitle" data-en="Fill in the local routes below to get scheduled, or call our line directly." data-fi="Täytä osoitteet alle ja varaa muuttoajankohta, tai soita meille suoraan.">Fill in the local routes below to get scheduled, or call our line directly.</p>
+        <section class="faq-section">
+            <h2 class="section-title" data-en="Frequently Asked Questions" data-fi="Usein Kysytyt Kysymykset">Frequently Asked Questions</h2>
+            <p class="section-subtitle" data-en="Everything you need to know about our flat rate local service parameters" data-fi="Kaikki mitä sinun tarvitsee tietää kiinteän hintamme palveluehdoista">Everything you need to know about our flat rate local service parameters</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="When exactly does my hourly billing start and stop?" data-fi="Milloin tarkalleen tuntiveloitukseni alkaa ja päättyy?">When exactly does my hourly billing start and stop?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="Billing begins precisely when our van and crew arrive at your first pick-up address. It ends the exact minute the final item is safely unloaded at your final destination route endpoint. There are no sneaky base travel surcharges added within the local Tampere perimeter region." data-fi="Veloitus alkaa tismalleen silloin, kun auto ja tiimi saapuvat ensimmäiseen lähtöosoitteeseesi. Se päättyy samalla minuutilla, kun viimeinen tavara on purettu onnistuneeksi määränpäässäsi. Tampereen lähialueilla ei ole mukana mitään piilotettuja aloitus- tai ajomaksuja."></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="What happens if my move takes a fraction of an hour (e.g., 2h 15m)?" data-fi="Mitä tapahtuu, jos muuttoni kestää murto-osan tunnista (esim. 2h 15min)?">What happens if my move takes a fraction of an hour (e.g., 2h 15m)?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="We have a simple 1-hour minimum charge rule to cover standard operational deployments. After that first initial hour is complete, we bill down to the precise minute. If your route takes exactly 1 hour and 15 minutes, you only pay for exactly 1.25 hours, not a full forced second hour rate." data-fi="Meillä on selkeä 1 tunnin vähimmäisveloitus toiminnan takaamiseksi. Ensimmäisen tunnin jälkeen laskutamme tismalleen käytettyjen minuuttien mukaan. Jos muutto kestää 1 tunnin ja 15 minuuttia, maksat vain 1,25 tunnista, etkä täydestä toisesta tunnista."></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="Are there extra hidden fees for high-floor apartment staircases?" data-fi="Onko korkeiden kerrostalojen portaista ylimääräisiä piilokuluja?">Are there extra hidden fees for high-floor apartment staircases?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="Absolutely not. Whether you are moving out of a ground-floor row house or carrying heavy boxes up to a 5th-floor historical building block in central Keskusta without a working elevator mechanical shaft lift, our flat hourly rates remain completely identical and unaltered." data-fi="Ei missään tapauksessa. Muutitpa sitten maantasosta rivitalosta tai kantat raskaita laatikoita viidenteen kerrokseen vanhassa keskustatalossa ilman toimivaa hissiä, kiinteä tuntihintamme pysyy täysin samana ilman korotuksia."></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="Can I request multiple drop-off stops along my moving route?" data-fi="Voinko pyytää useita pysähdyksiä muuttoreitin varrella?">Can I request multiple drop-off stops along my moving route?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="Yes, easily. Since we follow a transparent hourly structure, you can dictate as many route stop-offs as needed (such as stopping by a local recycling center center point or tracking down to an external storage unit partition node) directly during the drive timeline workflow." data-fi="Kyllä, helposti. Koska toimimme läpinäkyvällä tuntiperusteisella mallilla, voit määrittää reitille niin monta välistoppia kuin haluat (kuten käynnin kierrätyskeskuksessa tai erillisellä varastolla) suoraan muuton aikana ilman lisäseuraamuksia."></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title" id="book" data-en="Select a Tentative Date for Now" data-fi="Valitse alustava päivämäärä">Select a Tentative Date for Now</h2>
+        <p class="section-subtitle" data-en="Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free" data-fi="Varmista paikkasi aikataulussamme jo tänään. Jos muuttoaikataulusi muuttuu, voit muuttaa päivämäärää myöhemmin ilmaiseksi">Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free.</p>
 
         <section class="call-option-block">
             <h3 data-en="Prefer booking over the phone?" data-fi="Haluatko mieluummin varata puhelimitse?">Prefer booking over the phone?</h3>
-            <p style="font-size: 14px; color: var(--text-muted);" data-en="Get an instant confirmation without typing out forms." data-fi="Saat välittömän vahvistuksen ilman lomakkeiden täyttämistä.">Get an instant confirmation without typing out forms.</p>
+            <p style="font-size: 14px; color: var(--text-muted);" data-en="Get an instant confirmation without typing out forms" data-fi="Saat välittömän vahvistuksen ilman lomakkeiden täyttämistä">Get an instant confirmation without typing out forms</p>
             <a href="tel:+358449318824" class="phone-link">📞 +358 44 931 8824</a>
             <p style="font-size: 12px; color: var(--primary);" data-en="Open 24/7 for local moves across Tampere" data-fi="Avoinna 24/7 muutoille Tampereen alueella">Open 24/7 for local moves across Tampere</p>
         </section>
@@ -830,10 +1073,11 @@
                     <span class="privacy-notice" data-en="🔒 Required strictly to coordinate your booking arrival. We never save your number for marketing, and we absolutely do not send spam or advertisements." data-fi="🔒 Vaaditaan ainoastaan muuton saapumisajankohdan sopimiseen. Emme koskaan tallenna numeroasi markkinointia varten, emmekä lähetä mainoksia tai roskapostia.">🔒 Required strictly to coordinate your booking arrival. We never save your number for marketing, and we absolutely do not send spam or advertisements.</span>
                 </div>
 
-                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 0;">
+                <div class="form-row-2">
                     <div class="form-group">
                         <label for="move-date" data-en="Preferred Date" data-fi="Toivottu Päivämäärä">Preferred Date</label>
                         <input type="date" id="move-date" class="form-control" onclick="this.showPicker();" required>
+                        <span class="privacy-notice" style="color: var(--primary);" data-en="💡 Dates are highly flexible. You can shift timelines later for free!" data-fi="💡 Päivämäärät ovat joustavia. Voit muuttaa ajankohtaa myöhemmin ilmaiseksi!">💡 Dates are highly flexible. You can shift timelines later for free!</span>
                     </div>
                     <div class="form-group">
                         <label for="plan-select" data-en="Moving Plan" data-fi="Muuttopaketti">Moving Plan</label>
@@ -852,7 +1096,7 @@
                     </select>
                 </div>
 
-                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; border: none; font-size: 16px; margin-top: 10px;" data-en="Reserve Moving Crew" data-fi="Varaa muuttotiimi">Reserve Moving Crew</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="border: none; font-size: 16px; margin-top: 10px;" data-en="Reserve Moving Crew" data-fi="Varaa muuttotiimi">Reserve Moving Crew</button>
             </form>
         </section>
     </main>
@@ -871,6 +1115,8 @@
         window.addEventListener('DOMContentLoaded', () => {
             setupCalendarConstraints();
             initTheme();
+            initLogo3DAnimation();
+            initInputFocusEffects();
 
             const savedLang = localStorage.getItem('tampereMoveLang');
             if (savedLang) {
@@ -880,24 +1126,51 @@
             }
         });
 
-        /* --- Theme Management Scripting --- */
+        function toggleFaq(button) {
+            const currentItem = button.parentElement;
+            currentItem.classList.toggle('active');
+        }
+
+        function initLogo3DAnimation() {
+            const wrapper = document.querySelector('.hero-logo-wrapper');
+            const logo = document.querySelector('.hero-brand-logo');
+
+            if (wrapper && logo) {
+                wrapper.addEventListener('mousemove', (e) => {
+                    const { left, top, width, height } = wrapper.getBoundingClientRect();
+                    const x = (e.clientX - left) / width - 0.5;
+                    const y = (e.clientY - top) / height - 0.5;
+
+                    logo.style.transform = `perspective(1000px) rotateX(${y * -14}deg) rotateY(${x * 14}deg) scale3d(1.04, 1.04, 1.04)`;
+                });
+
+                wrapper.addEventListener('mouseleave', () => {
+                    logo.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                });
+            }
+        }
+
+        function initInputFocusEffects() {
+            const controls = document.querySelectorAll('.form-control');
+            controls.forEach(control => {
+                control.addEventListener('focus', () => {
+                    control.parentElement.style.transform = 'translateX(2px)';
+                    control.parentElement.style.transition = 'transform 0.2s ease';
+                });
+                control.addEventListener('blur', () => {
+                    control.parentElement.style.transform = 'translateX(0)';
+                });
+            });
+        }
+
         function initTheme() {
             const savedTheme = localStorage.getItem('tampereMoveTheme');
             if (savedTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'light');
                 document.getElementById('themeToggleBtn').innerText = '☀️';
-            } else if (savedTheme === 'dark') {
+            } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 document.getElementById('themeToggleBtn').innerText = '🌙';
-            } else {
-                const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-                if (systemPrefersLight) {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    document.getElementById('themeToggleBtn').innerText = '☀️';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    document.getElementById('themeToggleBtn').innerText = '🌙';
-                }
             }
         }
 
@@ -914,16 +1187,14 @@
             }
         }
 
-        /* --- Operations & Booking Management --- */
         function setupCalendarConstraints() {
             const dateInput = document.getElementById('move-date');
             const today = new Date();
             const year = today.getFullYear();
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const day = String(today.getDate()).padStart(2, '0');
-            const formattedDate = `${year}-${month}-${day}`;
-            dateInput.min = formattedDate;
-            dateInput.value = formattedDate;
+            dateInput.min = `${year}-${month}-${day}`;
+            dateInput.value = `${year}-${month}-${day}`;
         }
 
         function setLanguage(lang) {
