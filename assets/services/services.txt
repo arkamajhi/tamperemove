@@ -1,0 +1,50 @@
+/images/services/en/
+  van-driver-moving-help-tampere.png
+  van-driver-service-tampere.png
+  move-out-cleaning-tampere.png
+  move-in-cleaning-tampere.png
+  regular-home-cleaning-tampere.png
+  furniture-assembly-service-tampere.png
+  eco-pickup-donation-tampere.png
+  temporary-storage-logistics-tampere.png
+  fridge-stocking-service-tampere.png
+  technical-settling-in-assistance-tampere.png
+
+
+/images/services/fi/
+  paku-kuljettaja-muuttoapu-tampere.png
+  paku-kuljettaja-palvelu-tampere.png
+  muuttosiivous-tampere.png
+  sisaanmuuttosiivous-tampere.png
+  saannollinen-kotisiivous-tampere.png
+  kalusteiden-kokoamispalvelu-tampere.png
+  eko-kerays-lahjoitus-tampere.png
+  tilapainen-varastointi-logistiikka-tampere.png
+  jaakaapin-taydennyspalvelu-tampere.png
+  tekninen-asennuspalvelu-tampere.png
+
+
+/images/services/
+├── en/
+│   ├── van-driver-moving-help-tampere.png
+│   ├── van-driver-service-tampere.png
+│   ├── move-out-cleaning-tampere.png
+│   ├── move-in-cleaning-tampere.png
+│   ├── regular-home-cleaning-tampere.png
+│   ├── furniture-assembly-service-tampere.png
+│   ├── eco-pickup-donation-tampere.png
+│   ├── temporary-storage-logistics-tampere.png
+│   ├── fridge-stocking-service-tampere.png
+│   └── technical-settling-in-assistance-tampere.png
+│
+└── fi/
+    ├── paku-kuljettaja-muuttoapu-tampere.png
+    ├── paku-kuljettaja-palvelu-tampere.png
+    ├── muuttosiivous-tampere.png
+    ├── sisaanmuuttosiivous-tampere.png
+    ├── saannollinen-kotisiivous-tampere.png
+    ├── kalusteiden-kokoamispalvelu-tampere.png
+    ├── eko-kerays-lahjoitus-tampere.png
+    ├── tilapainen-varastointi-logistiikka-tampere.png
+    ├── jaakaapin-taydennyspalvelu-tampere.png
+    └── tekninen-asennuspalvelu-tampere.png
