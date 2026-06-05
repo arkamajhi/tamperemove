@@ -29,17 +29,8 @@
     }
     </script>
 
-    <style>
-        :root { --primary: #22C55E; --bg-main: #090D16; --text-main: #F9FAFB; --text-muted: #9CA3AF; --border: #1E293B; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2.5rem; margin-bottom: 20px; color: var(--primary); }
-        h2 { margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .card { background: #131926; padding: 20px; border-radius: 8px; border: 1px solid var(--border); }
-        .btn { display: inline-block; padding: 18px 35px; background: var(--primary); color: #042F1A; border-radius: 8px; font-weight: bold; text-decoration: none; margin-top: 30px; font-size: 1.2rem; }
-    </style>
+    <link rel="stylesheet" href="../styles.css">
+
 </head>
 <body>
 
@@ -72,7 +63,38 @@
             <p>We know the Vuores area layout intimately. From <strong>Isokuusentie</strong> to <strong>Rautaharkontie</strong>, our drivers know the most efficient routes to ensure your move happens on time, every time.</p>
         </section>
 
-        <a href="/index.html#bookingForm" class="btn">Book Your Vuores Move</a>
+        <a href="../index.html#bookingForm" class="btn-primary">Book Your Vuores Move Now</a>
     </main>
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>Service Areas</h4>
+                <ul class="footer-links">
+                    <li><a href="/areas/hervanta.html">Moving in Hervanta</a></li>
+                    <li><a href="/areas/kaleva.html">Moving in Kaleva</a></li>
+                    <li><a href="/areas/vuores.html">Moving in Vuores</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="/about.html">About TampereMove</a></li>
+                    <li><a href="tel:+358449318824" class="phone-link">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+
+            <h4> &copy; 2026 TampereMove is a moving brand operated by Tyozy (Business ID 3549202-5)</h4>
+            <h4>We provide apartment moves, furniture transport, and moving assistance in Tampere, across Pirkanmaa and surrounding municipalities.</h4>
+
+            <a class="footer-copyright-link" href="privacy-policy.html" data-translate-key="privacy">Privacy Policy</a><br><br>
+
+            <a class="footer-copyright-link" href="tel:+358449318824">+358 44 931 8824</a><br>
+
+            <a class="footer-copyright-link" href="mailto:info@tamperemove.fi">tyozyoy@gmail.com</a>
+
+        </div>
+    </footer>
 </body>
 </html>
