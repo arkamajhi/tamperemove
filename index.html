@@ -178,6 +178,56 @@
             </div>
         </section>
 
+        <section>
+          <h1 style="text-align:center" data-translate-key="googlerevh1">
+            Trusted by Customers Across Tampere
+          </h1>
+          <h2 style="text-align:center" data-translate-key="googlerevh2">
+            5-Star rated moving service in Tampere
+          </h2>
+
+          <div class="sk-ww-google-reviews" data-embed-id="25685224"></div>
+
+          <style>
+
+          .sk_branding,
+          .sk_branding *,
+          a.tutorial_link,
+          .--custom-branding{
+              display:none !important;
+              visibility:hidden !important;
+              opacity:0 !important;
+              height:0 !important;
+              overflow:hidden !important;
+          }
+          </style>
+
+
+          <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
+
+          <script>
+          function removeBranding() {
+              document.querySelectorAll('.sk_branding').forEach(el => el.remove());
+              document.querySelectorAll('.tutorial_link').forEach(el => el.remove());
+              document.querySelectorAll('.--custom-branding').forEach(el => el.remove());
+
+              // Add padding-bottom style
+              document.querySelectorAll('.sk-post__body').forEach(el => {
+                  el.style.paddingBottom = '15px';
+              });
+          }
+
+          window.addEventListener('load', removeBranding);
+
+          const observer = new MutationObserver(removeBranding);
+
+          observer.observe(document.body, {
+              childList: true,
+              subtree: true
+          });
+          </script>
+        </section>
+
         <h2 class="section-title" id="pricing" data-en="Choose From Only 2 Simple Plans" data-fi="Valitse kahdesta selkeästä paketista">Choose From Only 2 Simple Plans</h2>
         <p class="section-subtitle" data-en="Straightforward rates designed to make budgeting easy for everyone" data-fi="Selkeät hinnat, joiden avulla budjetointi on helppoa kaikille">Straightforward rates designed to make budgeting easy for everyone</p>
 
@@ -213,6 +263,14 @@
             </div>
         </section>
 
+        <section class="student-banner">
+            <p id="studentBannerText"
+               data-en="🎓 <strong>Student Perk:</strong> Have a valid student card? Show your digital ID (Tuudo/Syrinx/etc.) to our crew on moving day and enjoy a flat <strong>€5 discount</strong> off your final invoice."
+               data-fi="🎓 <strong>Opiskelijaetu:</strong> Onko sinulla voimassa oleva opiskelijakortti? Näytä digitaalinen ID (Tuudo/Syrinx/yms.) tiimillemme muuttopäivänä ja saat <strong>5 euron alennuksen</strong> lopullisesta laskusta.">
+               🎓 <strong>Student Perk:</strong> Have a valid student card? Show your digital ID (Tuudo/Syrinx/etc.) to our crew on moving day and enjoy a flat <strong>€5 discount</strong> off your final invoice.
+            </p>
+        </section>
+
         <section class="calculator-panel">
             <div class="calc-title-row">
                 <h4 data-en="Estimate Your Total Cost" data-fi="Arvioi kokonaiskustannuksesi">Estimate Your Total Cost</h4>
@@ -231,60 +289,9 @@
             </div>
         </section>
 
-        <section class="student-banner">
-            <p id="studentBannerText"
-               data-en="🎓 <strong>Student Perk:</strong> Have a valid student card? Show your digital ID (Tuudo/Syrinx/etc.) to our crew on moving day and enjoy a flat <strong>€5 discount</strong> off your final invoice."
-               data-fi="🎓 <strong>Opiskelijaetu:</strong> Onko sinulla voimassa oleva opiskelijakortti? Näytä digitaalinen ID (Tuudo/Syrinx/yms.) tiimillemme muuttopäivänä ja saat <strong>5 euron alennuksen</strong> lopullisesta laskusta.">
-               🎓 <strong>Student Perk:</strong> Have a valid student card? Show your digital ID (Tuudo/Syrinx/etc.) to our crew on moving day and enjoy a flat <strong>€5 discount</strong> off your final invoice.
-            </p>
-        </section>
 
-        <section class="faq-section">
-            <h2 class="section-title" data-en="Frequently Asked Questions" data-fi="Usein Kysytyt Kysymykset">Frequently Asked Questions</h2>
-            <p class="section-subtitle" data-en="Everything you need to know about our flat rate local service parameters" data-fi="Kaikki mitä sinun tarvitsee tietää kiinteän hintamme palveluehdoista">Everything you need to know about our flat rate local service parameters</p>
 
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span data-en="When exactly does my hourly billing start and stop?" data-fi="Milloin tarkalleen tuntiveloitukseni alkaa ja päättyy?">When exactly does my hourly billing start and stop?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-content">
-                        <p data-en="Billing begins precisely when our van and crew arrive at your first pick-up address. It ends the exact minute the final item is safely unloaded at your final destination route endpoint. There are no sneaky base travel surcharges added within the local Tampere perimeter region." data-fi="Veloitus alkaa tismalleen silloin, kun auto ja tiimi saapuvat ensimmäiseen lähtöosoitteeseesi. Se päättyy samalla minuutilla, kun viimeinen tavara on purettu onnistuneeksi määränpäässäsi. Tampereen lähialueilla ei ole mukana mitään piilotettuja aloitus- tai ajomaksuja."></p>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span data-en="What happens if my move takes a fraction of an hour (e.g., 2h 15m)?" data-fi="Mitä tapahtuu, jos muuttoni kestää murto-osan tunnista (esim. 2h 15min)?">What happens if my move takes a fraction of an hour (e.g., 2h 15m)?"</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-content">
-                        <p data-en="We have a simple 1-hour minimum charge rule to cover standard operational deployments. After that first initial hour is complete, we bill down to the precise minute. If your route takes exactly 1 hour and 15 minutes, you only pay for exactly 1.25 hours, not a full forced second hour rate." data-fi="Meillä on selkeä 1 tunnin vähimmäisveloitus toiminnan takaamiseksi. Ensimmäisen tunnin jälkeen laskutamme tismalleen käytettyjen minuuttien mukaan. Jos muutto kestää 1 tunnin ja 15 minuuttia, maksat vain 1,25 tunnista, etkä täydestä toisesta tunnista."></p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span data-en="Are there extra hidden fees for high-floor apartment staircases?" data-fi="Onko korkeiden kerrostalojen portaista ylimääräisiä piilokuluja?">Are there extra hidden fees for high-floor apartment staircases?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-content">
-                        <p data-en="Absolutely not. Whether you are moving out of a ground-floor row house or carrying heavy boxes up to a 5th-floor historical building block in central Keskusta without a working elevator mechanical shaft lift, our flat hourly rates remain completely identical and unaltered." data-fi="Ei missään tapauksessa. Muutitpa sitten maantasosta rivitalosta tai kantat raskaita laatikoita viidenteen kerrokseen vanhassa keskustatalossa ilman toimivaa hissiä, kiinteä tuntihintamme pysyy täysin samana ilman korotuksia."></p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span data-en="Can I request multiple drop-off stops along my moving route?" data-fi="Voinko pyytää useita pysähdyksiä muuttoreitin varrella?">Can I request multiple drop-off stops along my moving route?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-content">
-                        <p data-en="Yes, easily. Since we follow a transparent hourly structure, you can dictate as many route stop-offs as needed (such as stopping by a local recycling center center point or tracking down to an external storage unit partition node) directly during the drive timeline workflow." data-fi="Kyllä, helposti. Koska toimimme läpinäkyvällä tuntiperusteisella mallilla, voit määrittää reitille niin monta välistoppia kuin haluat (kuten käynnin kierrätyskeskuksessa tai erillisellä varastolla) suoraan muuton aikana ilman lisäseuraamuksia."></p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <h2 class="section-title" id="book" data-en="Select a Tentative Date for Now" data-fi="Valitse alustava päivämäärä">Select a Tentative Date for Now</h2>
         <p class="section-subtitle" data-en="Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free" data-fi="Varmista paikkasi aikataulussamme jo tänään. Jos muuttoaikataulusi muuttuu, voit muuttaa päivämäärää myöhemmin ilmaiseksi">Secure your spot in our schedule today. If your moving timeline changes, you can adjust or shift your date later for free</p>
@@ -354,6 +361,55 @@
                 <button type="submit" id="submitBtn" class="btn btn-primary" style="border: none; font-size: 16px; margin-top: 10px;" data-en="Reserve Moving Crew" data-fi="Varaa muuttotiimi">Reserve Moving Crew</button>
             </form>
         </section>
+
+
+        <section class="faq-section">
+            <h2 class="section-title" data-en="Frequently Asked Questions" data-fi="Usein Kysytyt Kysymykset">Frequently Asked Questions</h2>
+            <p class="section-subtitle" data-en="Everything you need to know about our flat rate local service parameters" data-fi="Kaikki mitä sinun tarvitsee tietää kiinteän hintamme palveluehdoista">Everything you need to know about our flat rate local service parameters</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="When exactly does my hourly billing start and stop?" data-fi="Milloin tarkalleen tuntiveloitukseni alkaa ja päättyy?">When exactly does my hourly billing start and stop?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="Billing begins precisely when our van and crew arrive at your first pick-up address. It ends the exact minute the final item is safely unloaded at your final destination route endpoint. There are no sneaky base travel surcharges added within the local Tampere perimeter region." data-fi="Veloitus alkaa tismalleen silloin, kun auto ja tiimi saapuvat ensimmäiseen lähtöosoitteeseesi. Se päättyy samalla minuutilla, kun viimeinen tavara on purettu onnistuneeksi määränpäässäsi. Tampereen lähialueilla ei ole mukana mitään piilotettuja aloitus- tai ajomaksuja."></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="What happens if my move takes a fraction of an hour (e.g., 2h 15m)?" data-fi="Mitä tapahtuu, jos muuttoni kestää murto-osan tunnista (esim. 2h 15min)?">What happens if my move takes a fraction of an hour (e.g., 2h 15m)?"</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="We have a simple 1-hour minimum charge rule to cover standard operational deployments. After that first initial hour is complete, we bill down to the precise minute. If your route takes exactly 1 hour and 15 minutes, you only pay for exactly 1.25 hours, not a full forced second hour rate." data-fi="Meillä on selkeä 1 tunnin vähimmäisveloitus toiminnan takaamiseksi. Ensimmäisen tunnin jälkeen laskutamme tismalleen käytettyjen minuuttien mukaan. Jos muutto kestää 1 tunnin ja 15 minuuttia, maksat vain 1,25 tunnista, etkä täydestä toisesta tunnista."></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="Are there extra hidden fees for high-floor apartment staircases?" data-fi="Onko korkeiden kerrostalojen portaista ylimääräisiä piilokuluja?">Are there extra hidden fees for high-floor apartment staircases?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="Absolutely not. Whether you are moving out of a ground-floor row house or carrying heavy boxes up to a 5th-floor historical building block in central Keskusta without a working elevator mechanical shaft lift, our flat hourly rates remain completely identical and unaltered." data-fi="Ei missään tapauksessa. Muutitpa sitten maantasosta rivitalosta tai kantat raskaita laatikoita viidenteen kerrokseen vanhassa keskustatalossa ilman toimivaa hissiä, kiinteä tuntihintamme pysyy täysin samana ilman korotuksia."></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span data-en="Can I request multiple drop-off stops along my moving route?" data-fi="Voinko pyytää useita pysähdyksiä muuttoreitin varrella?">Can I request multiple drop-off stops along my moving route?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content">
+                        <p data-en="Yes, easily. Since we follow a transparent hourly structure, you can dictate as many route stop-offs as needed (such as stopping by a local recycling center center point or tracking down to an external storage unit partition node) directly during the drive timeline workflow." data-fi="Kyllä, helposti. Koska toimimme läpinäkyvällä tuntiperusteisella mallilla, voit määrittää reitille niin monta välistoppia kuin haluat (kuten käynnin kierrätyskeskuksessa tai erillisellä varastolla) suoraan muuton aikana ilman lisäseuraamuksia."></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
