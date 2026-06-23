@@ -178,65 +178,17 @@
             </div>
         </section>
 
-        <section>
-          <h1 style="text-align:center" data-translate-key="googlerevh1">
-            Trusted by Customers Across Tampere
-          </h1>
-          <h2 style="text-align:center" data-translate-key="googlerevh2">
-            5-Star rated moving service in Tampere
-          </h2>
 
-          <div class="sk-ww-google-reviews" data-embed-id="25685224"></div>
-
-          <style>
-
-          .sk_branding,
-          .sk_branding *,
-          a.tutorial_link,
-          .--custom-branding{
-              display:none !important;
-              visibility:hidden !important;
-              opacity:0 !important;
-              height:0 !important;
-              overflow:hidden !important;
-          }
-          </style>
-
-
-          <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
-
-          <script>
-          function removeBranding() {
-              document.querySelectorAll('.sk_branding').forEach(el => el.remove());
-              document.querySelectorAll('.tutorial_link').forEach(el => el.remove());
-              document.querySelectorAll('.--custom-branding').forEach(el => el.remove());
-
-              // Add padding-bottom style
-              document.querySelectorAll('.sk-post__body').forEach(el => {
-                  el.style.paddingBottom = '15px';
-              });
-          }
-
-          window.addEventListener('load', removeBranding);
-
-          const observer = new MutationObserver(removeBranding);
-
-          observer.observe(document.body, {
-              childList: true,
-              subtree: true
-          });
-          </script>
-        </section>
 
         <h2 class="section-title" id="pricing" data-en="Choose From Only 2 Simple Plans" data-fi="Valitse kahdesta selkeästä paketista">Choose From Only 2 Simple Plans</h2>
-        <p class="section-subtitle" data-en="Straightforward rates designed to make budgeting easy for everyone" data-fi="Selkeät hinnat, joiden avulla budjetointi on helppoa kaikille">Straightforward rates designed to make budgeting easy for everyone</p>
+        <p class="section-subtitle" data-en="Straightforward rates designed to make budgeting easy for everyone. <br>No hidden charges or surprises later." data-fi="Selkeät hinnat, joiden avulla budjetointi on helppoa kaikille.<br>Ei piilokuluja eikä yllätyksiä myöhemmin.">Straightforward rates designed to make budgeting easy for everyone. <br>No hidden charges or surprises later.</p>
 
         <section class="grid">
             <div class="card">
                 <div class="card-header">
                     <h3><span data-en="Driver + Large Van" data-fi="Kuljettaja + Iso pakettiauto">Driver + Large Van</span></h3>
                     <p data-en="Best for DIY movers who pack themselves but need space and transportation." data-fi="Sopii omatoimiselle muuttajalle, joka pakkaa itse mutta tarvitsee tilaa ja kuljetuksen.">Best for DIY movers who pack themselves but need space and transportation.</p>
-                    <div class="price">€60 <span data-en="/ hour" data-fi="/ tunti">/ hour</span></div>
+                    <div class="price">€60 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour (including VAT)</span></div>
                 </div>
                 <ul class="features-list">
                     <li data-en="Clean, spacious 10m³ moving van" data-fi="Puhdas, tilava 10m³ muuttoauto">Clean, spacious 10m³ moving van</li>
@@ -251,7 +203,7 @@
                 <div class="card-header">
                     <h3><span data-en="Driver + Van + Helper" data-fi="Kuljettaja + Auto + Muottomies">Driver + Van + Helper</span></h3>
                     <p data-en="Best when you want total peace of mind and complete heavy lifting help." data-fi="Paras vaihtoehto, kun haluat täyden mielenrauhan ja kunnon kantoapua.">Best when you want total peace of mind and complete heavy lifting help.</p>
-                    <div class="price">€80 <span data-en="/ hour" data-fi="/ tunti">/ hour</span></div>
+                    <div class="price">€80 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour</span></div>
                 </div>
                 <ul class="features-list">
                     <li data-en="Large 15m³ moving van or truck" data-fi="Suuri 15m³ muuttolaatikko tai auto">Large 15m³ moving van or truck</li>
@@ -273,18 +225,18 @@
 
         <section class="calculator-panel">
             <div class="calc-title-row">
-                <h4 data-en="Estimate Your Total Cost" data-fi="Arvioi kokonaiskustannuksesi">Estimate Your Total Cost</h4>
+                <h4 data-en="Estimate Your Total Cost.  <br>No hidden charges or surprises later." data-fi="Arvioi kokonaiskustannuksesi <br>Ei piilokuluja eikä yllätyksiä myöhemmin.">Estimate Your Total Cost</h4>
                 <div class="calc-hours-display" aria-live="polite"><span id="calcHoursValue">3</span> <span data-en="Hours" data-fi="Tuntia">Hours</span></div>
             </div>
             <input type="range" min="1" max="10" value="3" class="slider-control" id="calcSlider" oninput="updateCalculatedPrices()" aria-label="Estimate shift timeline duration hours">
             <div class="calc-output-grid">
                 <div class="calc-output-box" id="calcBoxVan">
                     <h5 data-en="Van + Driver" data-fi="Auto + Kuljettaja">Van + Driver</h5>
-                    <p>€<span id="calcPriceVan">180</span></p>
+                    <p>€<span id="calcPriceVan">180</span><span data-en=" (including VAT)" data-fi=" (Hinta sisältää ALV:n)">/ hour</span></p>
                 </div>
                 <div class="calc-output-box" id="calcBoxHelper">
                     <h5 data-en="With Extra Helper" data-fi="Apumiehen kanssa">With Extra Helper</h5>
-                    <p>€<span id="calcPriceHelper">240</span></p>
+                    <p>€<span id="calcPriceHelper">240</span><span data-en=" (including VAT)" data-fi=" (Hinta sisältää ALV:n)">/ hour</span></p>
                 </div>
             </div>
         </section>
@@ -362,6 +314,60 @@
             </form>
         </section>
 
+
+
+        <section>
+          <h1 style="text-align:center" data-translate-key="googlerevh1">
+            Trusted by Customers Across Tampere
+          </h1>
+          <h2 style="text-align:center" data-translate-key="googlerevh2">
+            5-Star rated moving service in Tampere
+          </h2>
+
+          <div class="sk-ww-google-reviews" data-embed-id="25685224"></div>
+
+          <style>
+
+          .sk_branding,
+          .sk_branding *,
+          a.tutorial_link,
+          .--custom-branding{
+              display:none !important;
+              visibility:hidden !important;
+              opacity:0 !important;
+              height:0 !important;
+              overflow:hidden !important;
+          }
+          </style>
+
+
+          <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
+
+          <script>
+          function removeBranding() {
+              document.querySelectorAll('.sk_branding').forEach(el => el.remove());
+              document.querySelectorAll('.tutorial_link').forEach(el => el.remove());
+              document.querySelectorAll('.--custom-branding').forEach(el => el.remove());
+
+              // Add padding-bottom style
+              document.querySelectorAll('.sk-post__body').forEach(el => {
+                  el.style.paddingBottom = '15px';
+              });
+          }
+
+          window.addEventListener('load', removeBranding);
+
+          const observer = new MutationObserver(removeBranding);
+
+          observer.observe(document.body, {
+              childList: true,
+              subtree: true
+          });
+          </script>
+        </section>
+
+
+        
 
         <section class="faq-section">
             <h2 class="section-title" data-en="Frequently Asked Questions" data-fi="Usein Kysytyt Kysymykset">Frequently Asked Questions</h2>
