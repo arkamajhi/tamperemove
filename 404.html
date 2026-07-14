@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | TampereMove</title>
+    <meta name="description" content="Oops! You seem to have wandered off. Return to TampereMove home page.">
+
+    <style>
+        :root {
+            --primary: #22C55E;
+            --primary-hover: #16A34A;
+            --bg-main: #090D16;
+            --text-main: #F9FAFB;
+        }
+
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .error-image {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 20px 40px;
+            background-color: var(--primary);
+            color: #042F1A;
+            font-weight: 800;
+            font-size: 1.25rem;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-home:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Mobile responsiveness adjustment */
+        @media (max-width: 600px) {
+            .btn-home { font-size: 1rem; padding: 15px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <img src="assets/tampere-move-error-404-hervanta-student-moving.jpg"
+             alt="TampereMove 404 error page: A lost cat mover sitting in a cardboard box surrounded by moving supplies and signposts for Hervanta student housing."
+             class="error-image">
+
+        <a href="/index.html" class="btn-home">BACK TO TAMPERE / TAKAISIN TAMPEREELLE</a>
+    </main>
+
+</body>
+</html>
