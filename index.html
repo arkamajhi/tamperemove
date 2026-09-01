@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TampereMove — Affordable Moving Service Tampere | Halpa Muuttoauto & Muuttoapu Muuttopalvelu Kuljetus</title>
-    <meta name="description" content="Affordable, reliable moving services in Tampere and Pirkanmaa. Professional driver, van, and lifting help. Fixed flat rates €75/h or €100/h. No hidden fees. Book online or call us directly!">
+    <meta name="description" content="Affordable, reliable moving services in Tampere and Pirkanmaa. Professional driver, van, and lifting help. Fixed flat rates €80/h or €120/h. No hidden fees. Book online or call us directly!">
     <meta name="keywords" content="muuttoauto Tampere, moving service Tampere, halpa muutto Tampere, muuttoapu, opiskelijamuutto, van and driver, cheap moving Tampere, Pirkanmaa moving, muuttopalvelu Tampere">
     <link rel="canonical" href="https://tamperemove.fi/areas/hervanta.html" />
     <link rel="canonical" href="https://tamperemove.fi/areas/Kaleva.html" />
@@ -326,7 +326,7 @@
                 <div class="card-header">
                     <h3><span data-en="Driver + Large Van" data-fi="Kuljettaja + Iso pakettiauto">Driver + Large Van</span></h3>
                     <p data-en="Best for DIY movers who pack themselves but need space and transportation." data-fi="Sopii omatoimiselle muuttajalle, joka pakkaa itse mutta tarvitsee tilaa ja kuljetuksen.">Best for DIY movers who pack themselves but need space and transportation.</p>
-                    <div class="price">€75 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour (including VAT)</span></div>
+                    <div class="price">€80 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour (including VAT)</span></div>
                 </div>
                 <ul class="features-list">
                     <li data-en="Clean, spacious 10m³ moving van" data-fi="Puhdas, tilava 10m³ muuttoauto">Clean, spacious 10m³ moving van</li>
@@ -341,7 +341,7 @@
                 <div class="card-header">
                     <h3><span data-en="Driver + Van + Helper" data-fi="Kuljettaja + Auto + Muottomies">Driver + Van + Helper</span></h3>
                     <p data-en="Best when you want total peace of mind and complete heavy lifting help." data-fi="Paras vaihtoehto, kun haluat täyden mielenrauhan ja kunnon kantoapua.">Best when you want total peace of mind and complete heavy lifting help.</p>
-                    <div class="price">€100 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour</span></div>
+                    <div class="price">€120 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour</span></div>
                 </div>
                 <ul class="features-list">
                     <li data-en="Large 15m³ moving van or truck" data-fi="Suuri 15m³ muuttolaatikko tai auto">Large 15m³ moving van or truck</li>
@@ -433,8 +433,8 @@
                     <div class="form-group">
                         <label for="plan-select" data-en="Moving Plan" data-fi="Muuttopaketti">Moving Plan</label>
                         <select id="plan-select" class="form-control" onchange="syncFormToCalculator()" required>
-                            <option value="van" data-en="Driver + Van (€75/h)" data-fi="Kuljettaja + Auto (€75/h)">Driver + Van (€75/h)</option>
-                            <option value="helper" data-en="Driver + Van + Helper (€100/h)" data-fi="Kuljettaja + Auto + Apumies (€100/h)">Driver + Van + Helper (€100/h)</option>
+                            <option value="van" data-en="Driver + Van (€80/h)" data-fi="Kuljettaja + Auto (€80/h)">Driver + Van (€80/h)</option>
+                            <option value="helper" data-en="Driver + Van + Helper (€120/h)" data-fi="Kuljettaja + Auto + Apumies (€120/h)">Driver + Van + Helper (€120/h)</option>
                         </select>
                     </div>
                 </div>
@@ -629,8 +629,8 @@
 
             document.getElementById('calcHoursValue').innerText = hours;
 
-            const finalVanPrice = Math.max(0, (hours * 75) - discountAmount);
-            const finalHelperPrice = Math.max(0, (hours * 100) - discountAmount);
+            const finalVanPrice = Math.max(0, (hours * 80) - discountAmount);
+            const finalHelperPrice = Math.max(0, (hours * 120) - discountAmount);
 
             document.getElementById('calcPriceVan').innerText = finalVanPrice;
             document.getElementById('calcPriceHelper').innerText = finalHelperPrice;
