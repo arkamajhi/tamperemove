@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TampereMove — Affordable Moving Service Tampere | Halpa Muuttoauto & Muuttoapu Muuttopalvelu Kuljetus</title>
-    <meta name="description" content="Affordable, reliable moving services in Tampere and Pirkanmaa. Professional driver, van, and lifting help. Fixed flat rates €80/h or €120/h. No hidden fees. Book online or call us directly!">
+    <meta name="description" content="Affordable, reliable moving services in Tampere and Pirkanmaa. Professional driver, van, and lifting help. Fixed flat rates €90/h or €120/h. No hidden fees. Book online or call us directly!">
     <meta name="keywords" content="muuttoauto Tampere, moving service Tampere, halpa muutto Tampere, muuttoapu, opiskelijamuutto, van and driver, cheap moving Tampere, Pirkanmaa moving, muuttopalvelu Tampere">
     <link rel="canonical" href="https://tamperemove.fi/areas/hervanta.html" />
     <link rel="canonical" href="https://tamperemove.fi/areas/Kaleva.html" />
@@ -334,7 +334,7 @@
                 <div class="card-header">
                     <h3><span data-en="Driver + Large Van" data-fi="Kuljettaja + Iso pakettiauto">Driver + Large Van</span></h3>
                     <p data-en="Best for DIY movers who pack themselves but need space and transportation." data-fi="Sopii omatoimiselle muuttajalle, joka pakkaa itse mutta tarvitsee tilaa ja kuljetuksen.">Best for DIY movers who pack themselves but need space and transportation.</p>
-                    <div class="price">€80 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour (including VAT)</span></div>
+                    <div class="price">€90 <span data-en="/ hour (including VAT)" data-fi="/ tunti (Hinta sisältää ALV:n)">/ hour (including VAT)</span></div>
                 </div>
                 <ul class="features-list">
                     <li data-en="Clean, spacious 10m³ moving van" data-fi="Puhdas, tilava 10m³ muuttoauto">Clean, spacious 10m³ moving van</li>
@@ -355,7 +355,7 @@
                     <li data-en="Large 15m³ moving van or truck" data-fi="Suuri 15m³ muuttolaatikko tai auto">Large 15m³ moving van or truck</li>
                     <li data-en="Professional driver PLUS an extra strong lifter" data-fi="Ammattikuljettaja PLUS reipas ja vahva muuttomies">Professional driver PLUS an extra strong lifter</li>
                     <li data-en="We handle all heavy furniture, beds & boxes" data-fi="Me hoidamme raskaat huonekalut, sängyt ja laatikot puolestasi"> We handle all heavy furniture, beds & boxes</li>
-                    <li data-en="Zero staircase penalties or floor surcharges" data-fi="Ei kerros- tai porraslisämaksuja">Zero staircase penalties or floor surcharges</li>
+                    <li data-en="No extra charge for stairs or multiple floors" data-fi="Ei lisämaksua portaista tai useammasta kerroksesta">No extra charge for stairs or multiple floors</li>
                 </ul>
                 <button type="button" class="btn btn-primary" onclick="selectPlanAndScroll('helper')" data-en="Select Full Moving Help" data-fi="Valitse Täysi Muuttoapu">Select Full Moving Help</button>
             </div>
@@ -363,9 +363,9 @@
 
         <section class="student-banner">
             <p id="studentBannerText"
-               data-en="🎓 <strong>Student Perk:</strong> Have a valid student card? Show your digital ID (Tuudo/Syrinx/etc.) to our crew on moving day and enjoy a flat <strong>€10 discount</strong> off your final invoice."
-               data-fi="🎓 <strong>Opiskelijaetu:</strong> Onko sinulla voimassa oleva opiskelijakortti? Näytä digitaalinen ID (Tuudo/Syrinx/yms.) tiimillemme muuttopäivänä ja saat <strong>10 euron alennuksen</strong> lopullisesta laskusta.">
-               🎓 <strong>Student Perk:</strong> Have a valid student card? Show your digital ID (Tuudo/Syrinx/etc.) to our crew on moving day and enjoy a flat <strong>€10 discount</strong> off your final invoice.
+               data-en="🎓 <strong>Student Perk:</strong> Have a valid student card? Show your Student ID to our crew on moving day and enjoy a flat <strong>€10 discount</strong> off your final invoice."
+               data-fi="🎓 <strong>Opiskelijaetu:</strong> Onko sinulla voimassa oleva opiskelijakortti? Näytä opiskelijakorttisi muuttomiehille muuttopäivänä ja saat <strong>10 euron alennuksen</strong> lopullisesta laskusta.">
+               🎓 <strong>Student Perk:</strong> Have a valid student card? Show your Student ID to our crew on moving day and enjoy a flat <strong>€10 discount</strong> off your final invoice.
             </p>
         </section>
 
@@ -375,6 +375,9 @@
                 <div class="calc-hours-display" aria-live="polite"><span id="calcHoursValue">3</span> <span data-en="Hours" data-fi="Tuntia">Hours</span></div>
             </div>
             <input type="range" min="1" max="10" value="3" class="slider-control" id="calcSlider" oninput="updateCalculatedPrices()" aria-label="Estimate shift timeline duration hours">
+            <div class="calc-title-row">
+                <h4 data-en="Drag the green dot to change the estimated hours." data-fi="Muuta arvioitua tuntimäärää vetämällä vihreää pistettä.">Estimate Your Total Cost</h4>
+            </div>
             <div class="calc-output-grid">
                 <div class="calc-output-box" id="calcBoxVan">
                     <h5 data-en="Van + Driver" data-fi="Auto + Kuljettaja">Van + Driver</h5>
@@ -443,7 +446,7 @@
                     <div class="form-group">
                         <label for="plan-select" data-en="Moving Plan" data-fi="Muuttopaketti">Moving Plan</label>
                         <select id="plan-select" class="form-control" onchange="syncFormToCalculator()" required>
-                            <option value="van" data-en="Driver + Van (€80/h)" data-fi="Kuljettaja + Auto (€80/h)">Driver + Van (€80/h)</option>
+                            <option value="van" data-en="Driver + Van (€90/h)" data-fi="Kuljettaja + Auto (€90/h)">Driver + Van (€90/h)</option>
                             <option value="helper" data-en="Driver + Van + Helper (€120/h)" data-fi="Kuljettaja + Auto + Apumies (€120/h)">Driver + Van + Helper (€120/h)</option>
                         </select>
                     </div>
@@ -534,11 +537,13 @@
 
                 <div class="faq-item">
                     <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span data-en="What happens if my move takes a fraction of an hour (e.g., 2h 15m)?" data-fi="Mitä tapahtuu, jos muuttoni kestää murto-osan tunnista (esim. 2h 15min)?">What happens if my move takes a fraction of an hour (e.g., 2h 15m)?"</span>
+                        <span data-en="What happens if my move takes a fraction of an hour (e.g., 2 hr 30 min)?"
+                              data-fi="Mitä tapahtuu, jos muutto kestää osan tunnista (esim. 2 h 30 min)?">What happens if my move takes a fraction of an hour (e.g., 2 hr 30 min)?</span>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-content">
-                        <p data-en="We have a simple 1-hour minimum charge rule to cover standard operational deployments. After that first initial hour is complete, we bill down to the precise minute. If your route takes exactly 1 hour and 15 minutes, you only pay for exactly 1.25 hours, not a full forced second hour rate." data-fi="Meillä on selkeä 1 tunnin vähimmäisveloitus toiminnan takaamiseksi. Ensimmäisen tunnin jälkeen laskutamme tismalleen käytettyjen minuuttien mukaan. Jos muutto kestää 1 tunnin ja 15 minuuttia, maksat vain 1,25 tunnista, etkä täydestä toisesta tunnista."></p>
+                        <p data-en="We have a 1-hour minimum charge. After the first hour, we bill in 30-minute increments. If your move takes 2 hours and 30 minutes, you pay for 2.5 hours."
+                           data-fi="Veloitamme vähintään yhdestä tunnista. Sen jälkeen laskutamme 30 minuutin jaksoissa. Jos muutto kestää 2 tuntia ja 30 minuuttia, maksat 2,5 tunnista."></p>
                     </div>
                 </div>
 
@@ -600,7 +605,7 @@
         <div class="container">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47055.55297507794!2d23.788517799999997!3d61.489152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468edf4fb06bf721%3A0xb9dd787c27a9a95d!2sMuuttoPalvelu%20TampereMove%20Nekala!5e1!3m2!1sen!2sfi!4v1788885139353!5m2!1sen!2sfi" width="100%" max-width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
-        
+
     </footer>
 
     <script>
@@ -644,7 +649,7 @@
 
             document.getElementById('calcHoursValue').innerText = hours;
 
-            const finalVanPrice = Math.max(0, (hours * 80) - discountAmount);
+            const finalVanPrice = Math.max(0, (hours * 90) - discountAmount);
             const finalHelperPrice = Math.max(0, (hours * 120) - discountAmount);
 
             document.getElementById('calcPriceVan').innerText = finalVanPrice;
